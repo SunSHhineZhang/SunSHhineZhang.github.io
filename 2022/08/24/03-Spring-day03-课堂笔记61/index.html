@@ -1,0 +1,2186 @@
+<!DOCTYPE html>
+<html>
+  <!-- meta/link... -->
+  
+
+
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+  <title>张小凯的私人博客</title>
+
+  <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
+  <link href="https://unpkg.com/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="/js/swiper/swiper@5.4.1.min.css" rel="stylesheet">
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/animate.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/js/shareJs/share.min.css">
+
+  
+  <style>
+        @media (max-width: 992px) {
+            #waifu {
+                display: none;
+            }
+        }
+    </style>
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+    
+
+    <!-- import link -->
+    
+        
+            
+        
+            
+        
+    
+    <!-- import script -->
+    
+        
+            
+        
+            
+        
+    
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+  
+  <!-- 依赖于jquery和vue -->
+  
+    
+<script src="https://unpkg.com/jquery@3.5.1/dist/jquery.min.js"></script>
+
+  
+
+  
+    
+<script src="https://unpkg.com/vue@2.6.11/dist/vue.min.js"></script>
+
+  
+  
+  <body>
+    <!-- 预加载动画 -->
+    <!-- 页面预加载动画 -->
+
+<div id='loader'>
+  <link rel="stylesheet" href="/js/loaded/index.css" >
+  <div class="loading-left-bg"></div>
+  <div class="loading-right-bg"></div>
+  <div class="spinner-box">
+    <div class="configure-border-1">
+      <div class="configure-core"></div>
+    </div>
+    <div class="configure-border-2">
+      <div class="configure-core"></div>
+    </div>
+    <div class="loading-word">loading...</div>
+  </div>
+</div>
+
+<script>
+  var endLoading = function () {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loader').classList.add("loading");
+  }
+  window.addEventListener('DOMContentLoaded',endLoading);
+  
+</script>
+
+    
+    <!-- 判断是否为暗黑风格 -->
+    <!-- 判断是否为黑夜模式 -->
+<script>
+  let isDark = JSON.parse(localStorage.getItem('dark')) || JSON.parse('false');
+
+  if (isDark) {
+    $(document.body).addClass('darkModel');
+  }
+</script>
+
+    <!-- 需要在上面加载的js -->
+    <script>
+  function loadScript(src, cb) {
+    return new Promise(resolve => {
+      setTimeout(function () {
+        var HEAD = document.getElementsByTagName("head")[0] || document.documentElement;
+        var script = document.createElement("script");
+        script.setAttribute("type", "text/javascript");
+        if (cb) {
+          if (JSON.stringify(cb)) {
+            for (let p in cb) {
+              if (p == "onload") {
+                script[p] = () => {
+                  cb[p]()
+                  resolve()
+                }
+              } else {
+                script[p] = cb[p]
+                script.onload = resolve
+              }
+            }
+          } else {
+            script.onload = () => {
+              cb()
+              resolve()
+            };
+          }
+        } else {
+          script.onload = resolve
+        }
+        script.setAttribute("src", src);
+        HEAD.appendChild(script);
+      });
+    });
+  }
+
+  //https://github.com/filamentgroup/loadCSS
+  var loadCSS = function (href, before, media, attributes) {
+    return new Promise(resolve => {
+      setTimeout(function () {
+        var link = document.createElement('link');
+        link.rel = "stylesheet";
+        link.href = src;
+        link.onload = resolve;
+        document.getElementsByTagName("head")[0].appendChild(link);
+      });
+    });
+  };
+
+</script> 
+
+<!-- 轮播图所需要的js -->
+<script src="/js/swiper/swiper.min.js"></script>
+<script src="/js/swiper/vue-awesome-swiper.js"></script>
+<script src="/js/swiper/swiper.animate1.0.3.min.js"></script>
+
+<script type="text/javascript">
+  Vue.use(window.VueAwesomeSwiper)
+</script>
+
+
+  <script src="/js/vue-typed-js/index.js"></script>
+
+
+<!-- 首页的公告滚动插件的js需要重新加载 -->
+<script src="/js/vue-seamless-scroll/index.js"></script>
+
+<!-- 打字机效果js -->
+<script src="https://unpkg.com/typed.js@2.0.11"></script>
+
+
+    <div id="safearea">
+      <main class="main" id="pjax-container">
+        <!-- 头部导航 -->
+        
+<header class="header   " 
+  id="navHeader"
+  style="position: fixed;
+  left: 0; top: 0; z-index: 10;width: 100%;"
+>
+  <div class="header-content">
+    <div class="bars">
+      <div id="appDrawer" class="sidebar-image">
+  <div class="drawer-box-icon">
+    <i class="fas fa-bars" aria-hidden="true" @click="showDialogDrawer"></i>
+  </div>
+  
+  <transition name="fade">
+    <div class="drawer-box_mask" v-cloak style="display: none;" v-show="visible" @click.self="cancelDialogDrawer">
+    </div>
+  </transition>
+  <div class="drawer-box" :class="{'active': visible}">
+    <div class="drawer-box-head bg-color">
+      <img class="drawer-box-head_logo lazyload placeholder" src="/medias/logo.png" class="lazyload placeholder" data-srcset="/medias/logo.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="logo">
+      <h3 class="drawer-box-head_title">张小凯的私人博客</h3>
+      <h5 class="drawer-box-head_desc"></h5>
+    </div>
+    
+    <div class="drawer-box-content">
+      <ul class="drawer-box-content_menu">
+        
+        
+          <li class="drawer-box-content_item">
+            <a target="_blank" rel="noopener" href="https://github.com/yuang01/hexo-theme-bamboo">
+              <i class="fas fa-github" aria-hidden="true"></i>
+              <span>Github</span>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  var body = document.body || document.documentElement || window;
+  var vm = new Vue({
+    el: '#appDrawer',
+    data: {
+      visible: false,
+      top: 0,
+      openArr: [],
+    },
+    computed: {
+    },
+    mounted() {
+    },
+    methods: {
+      isOpen(index) {
+        if (this.openArr.includes(index)) {
+          return true;
+        } else {
+          return false;
+        }
+      },
+      openOrCloseMenu(curIndex) {
+        const index = this.openArr.indexOf(curIndex);
+        if (index !== -1) {
+          this.openArr.splice(index, 1);
+        } else {
+          this.openArr.push(curIndex);
+        }
+      },
+      showDialogDrawer() {
+        this.visible = true;
+        // 防止页面滚动，只能让弹框滚动
+        this.top = $(document).scrollTop()
+        body.style.cssText = 'width: 100%; height: 100%;overflow: hidden;';
+      },
+      cancelDialogDrawer() {
+        this.visible = false;
+        body.removeAttribute('style');
+        $(document).scrollTop(this.top)
+      }
+    },
+    created() {}
+  })
+</script>
+
+    </div>
+    <div class="blog-title" id="author-avatar">
+      
+        <div class="avatar">
+          <img src="/medias/logo.png" class="lazyload placeholder" data-srcset="/medias/logo.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="logo">
+        </div>
+      
+      <a href="/" class="logo">张小凯的私人博客</a>
+    </div>
+    <nav class="navbar">
+      <ul class="menu">
+        
+      </ul>
+      
+      
+        <div id="appSearch">
+  <div class="search"  @click="showDialog()"><i class="fas fa-search" aria-hidden="true"></i></div>
+  <transition name="fade">
+    <div class="message-box_wrapper" style="display: none;" v-cloak v-show="dialogVisible" @click.self="cancelDialogVisible()">
+      <div class="message-box animated bounceInDown">
+        <h2>
+          <span>
+            <i class="fas fa-search" aria-hidden="true"></i>
+            <span class="title">Search</span>
+          </span>
+          <i class="fas fa-times close" pointer style="float:right;" aria-hidden="true" @click.self="cancelDialogVisible()"></i>
+        </h2>
+        <form class="site-search-form">
+          <input type="text"
+            placeholder="Please enter keywords"
+            id="local-search-input" 
+            @click="getSearchFile()"
+            class="st-search-input"
+            v-model="searchInput"
+          />
+        </form>
+        <div class="result-wrapper">
+          <div id="local-search-result" class="local-search-result-cls"></div>
+        </div>
+      </div>
+    </div>
+  </transition>
+</div>
+<script src="/js/local_search.js"></script>
+<script>
+  var body = document.body || document.documentElement || window;
+  var vm = new Vue({
+    el: '#appSearch',
+    data: {
+      dialogVisible: false,
+      searchInput: '',
+      top: 0,
+    },
+    computed: {
+    },
+    mounted() {
+      window.addEventListener('pjax:complete', () => {
+        this.cancelDialogVisible();
+      })
+    },
+    methods: {
+      showDialog() {
+        this.dialogVisible = true;
+        // 防止页面滚动，只能让弹框滚动
+        this.top = $(document).scrollTop()
+        body.style.cssText = 'overflow: hidden;';
+      },
+      getSearchFile() {
+        if (!this.searchInput) {
+          getSearchFile("/search.xml");
+        }
+      },
+      cancelDialogVisible() {
+        this.dialogVisible = false;
+        body.removeAttribute('style');
+        $(document).scrollTop(this.top)
+      },
+    },
+    created() {}
+  })
+</script>
+<!-- 解决刷新页面闪烁问题，可以在元素上添加display: none, 或者用vue.extend方法，详情：https://blog.csdn.net/qq_31393401/article/details/81017912 -->
+<!-- 下面是搜索基本写法 -->
+<!-- <script type="text/javascript" id="local.search.active">
+  var inputArea = document.querySelector("#local-search-input");
+  inputArea.onclick   = function(){ getSearchFile(); this.onclick = null }
+  inputArea.onkeydown = function(){ if(event.keyCode == 13) return false }
+</script> -->
+
+      
+
+    </nav>
+  </div>
+  
+    <a target="_blank" rel="noopener" href="https://github.com/yuang01/hexo-theme-bamboo" class="github-corner color-primary" aria-label="View source on GitHub"><svg width="60" height="60" viewBox="0 0 250 250" style="fill:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  
+  
+</header>
+        <!-- 内容区域 -->
+        
+ <!-- prismjs 代码高亮 -->
+ 
+
+
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+
+
+  <!-- 文章详情页顶部图片和标题 -->
+
+
+
+
+<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;background-image:url('/medias/1.jpg')">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
+  
+  <div class="post-detail-header_info-box">
+    <div class="title-box">
+      <span class="title">
+        
+      </span>
+    </div>
+    
+    
+      
+        <span class="post-detail-header_date">
+          <i class="fas fa-calendar"></i> Published in：2022-08-24 |
+        </span>
+      
+
+      
+
+      
+    
+  </div>
+  
+  
+    <script src="/js/bubble/bubble.js"></script>
+  
+</div>
+
+
+
+
+
+<div class="post-detail-content row justify-position" 
+  style="padding-top: 0px;">
+  <div class="main-content">
+    <article class="post post-detail">
+      <div class="post-content">
+        <h2 id="今日内容"><a href="#今日内容" class="headerlink" title="今日内容"></a>今日内容</h2><ul>
+<li><input disabled="" type="checkbox"> <code>AOP</code>概念</li>
+<li><input disabled="" type="checkbox"> &#x3D;&#x3D;<code>AOP</code>快速入门&#x3D;&#x3D;</li>
+<li><input disabled="" type="checkbox"> <code>AOP</code>的工作流程</li>
+<li><input disabled="" type="checkbox"> &#x3D;&#x3D;<code>AOP</code>配置&#x3D;&#x3D;</li>
+<li><input disabled="" type="checkbox"> &#x3D;&#x3D;<code>Spring</code>事务&#x3D;&#x3D;</li>
+</ul>
+<h2 id="1-AOP相关概念"><a href="#1-AOP相关概念" class="headerlink" title="1. AOP相关概念"></a>1. <code>AOP</code>相关概念</h2><h3 id="x3D-x3D-1-1-AOP概念-amp-作用-x3D-x3D"><a href="#x3D-x3D-1-1-AOP概念-amp-作用-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;1.1 AOP概念&amp;作用&#x3D;&#x3D;"></a>&#x3D;&#x3D;1.1 <code>AOP</code>概念&amp;作用&#x3D;&#x3D;</h3><p>**<code>AOP</code>**（Aspect Oriented Programming）是一种思想，面向切面编程</p>
+<p><strong>作用</strong>：在不修改源码的前提下，在程序运行过程中对方法进行增强。</p>
+<p>解耦、方便维护、开发效率高、代码复用。</p>
+<p><strong>底层</strong>是<code>动态代理</code>，分为两种：</p>
+<p><strong><code>JDK</code>动态代理</strong>，基于接口的代理，能对接口或者接口的实现类进行增强</p>
+<p><strong><code>cglib</code>动态代理</strong>，基于父类的代理，该父类不能被<code>final</code>修饰。</p>
+<p><code>Spring</code>底层会根据目标对象的特性判断选用其中一个：如果目标类实现了接口，用<code>JDK</code>动态代理；否则使用<code>cglib</code>动态代理。我们也可以强制<code>Spring</code>使用<code>cglib</code>。</p>
+<p><font color="red">不管使用任何一种实现，都不需要我们写代码。<strong>只需要配置即可</strong>。</font></p>
+<p><code>OOP（Object Oriented Programming）</code>是一种思想，面向对象编程</p>
+<h3 id="1-2-AOP优势"><a href="#1-2-AOP优势" class="headerlink" title="1.2 AOP优势"></a>1.2 <code>AOP</code>优势</h3><p>耦合低：分离业务代码和系统辅助代码，高内聚低耦合，易维护</p>
+<p>复用强：系统辅助代码复用性更高</p>
+<p>易拓展：插拔式组件设计，拓展简单</p>
+<h3 id="x3D-x3D-1-3-核心名词概念-x3D-x3D"><a href="#x3D-x3D-1-3-核心名词概念-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;1.3 核心名词概念&#x3D;&#x3D;"></a>&#x3D;&#x3D;1.3 核心名词概念&#x3D;&#x3D;</h3><p><code>JoinPoint</code>（连接点）：有可能被拦截并增强的方法，<del>目标对象</del>业务代码中所有的方法都是连接点；</p>
+<p><font color="red"><strong>Pointcut（切入点）</strong></font>：也叫切点，真正被拦截并且增强的方法；</p>
+<p><font color="red"><strong>Advice（通知&#x2F; 增强）</strong></font>：就是增强方法&#x2F;增强的内容，也就是共性功能，<code>Spring</code>中通过方法呈现，该方法所属类为通知类；</p>
+<p><strong>Aspect（切面）</strong>：通知&#x2F;增强 + 切点（概念比较模糊），使用注解方式实现能够呈现出来一个切面类。</p>
+<p><font color="red"><strong>Target（目标对象）</strong></font>：要被代理增强的原始对象。要被代理并增强的原始方法，叫目标方法。</p>
+<p><strong>Proxy （代理对象）</strong>：增强后的对象，是在程序运行期间动态生成的。</p>
+<h3 id="1-4-AOP的应用场景"><a href="#1-4-AOP的应用场景" class="headerlink" title="1.4 AOP的应用场景"></a>1.4 <code>AOP</code>的应用场景</h3><ul>
+<li><strong>日志记录处理</strong></li>
+<li><strong>事务管理</strong></li>
+<li><strong>权限校验</strong></li>
+<li><strong>信息&#x2F;邮件发送</strong></li>
+<li><strong>性能监控优化</strong></li>
+<li><strong>……</strong></li>
+</ul>
+<h3 id="x3D-x3D-1-5-实现AOP需要做的事情-x3D-x3D"><a href="#x3D-x3D-1-5-实现AOP需要做的事情-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;1.5 实现AOP需要做的事情&#x3D;&#x3D;"></a>&#x3D;&#x3D;1.5 实现<code>AOP</code>需要做的事情&#x3D;&#x3D;</h3><ol>
+<li>编码。核心业务代码、系统辅助代码</li>
+<li>配置。装配Bean进入Spring容器，切点表达式；</li>
+</ol>
+<h2 id="x3D-x3D-2-快速入门-x3D-x3D"><a href="#x3D-x3D-2-快速入门-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;2. 快速入门&#x3D;&#x3D;"></a>&#x3D;&#x3D;2. 快速入门&#x3D;&#x3D;</h2><h3 id="2-1-案例分析"><a href="#2-1-案例分析" class="headerlink" title="2.1 案例分析"></a>2.1 案例分析</h3><ul>
+<li><p>需求：</p>
+<p>案例设定：测试接口的执行效率</p>
+<p>简化设定：在接口方法执行前输出当前系统时间。</p>
+</li>
+<li><p>开发模式</p>
+<p><code>XML</code> 或 注解，本案使用注解</p>
+</li>
+<li><p>实现步骤&#x2F;思路：</p>
+<ol>
+<li>导入坐标（<code>pom.xml</code>）</li>
+<li>编写连接点方法（原始操作，<code>dao</code>接口与实现类）</li>
+<li>编写共性功能（通知类与通知）</li>
+<li>定义切点表达式</li>
+<li>绑定切点与通知关系（切面）</li>
+</ol>
+</li>
+</ul>
+<h3 id="2-2-导入依赖坐标"><a href="#2-2-导入依赖坐标" class="headerlink" title="2.2 导入依赖坐标"></a>2.2 导入依赖坐标</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- Spring --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-context<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.2.10.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- 1. 导入坐标（`pom.xml`） --&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">    aspectj</span></span><br><span class="line"><span class="comment">    Spring中采用的是aspectj的配置方式</span></span><br><span class="line"><span class="comment">   --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.aspectj<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aspectjweaver<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.9.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="2-3-定义dao接口与实现类"><a href="#2-3-定义dao接口与实现类" class="headerlink" title="2.3 定义dao接口与实现类"></a>2.3 定义<code>dao</code>接口与实现类</h3><p>这就是核心业务代码，其中的方法可能会被增强，里面的方法都是连接点。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.itheima.dao.impl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.itheima.dao.BookDao;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Repository;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="comment">// 2. 编写连接点方法（原始操作，`dao`接口与实现类）</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BookDaoImpl</span> <span class="keyword">implements</span> <span class="title class_">BookDao</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">save</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;book dao save ...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">update</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;book dao update ...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">delete</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;book dao delete ...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">select</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;book dao select ...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;	</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-4-定义通知类，编写通知方法"><a href="#2-4-定义通知类，编写通知方法" class="headerlink" title="2.4 定义通知类，编写通知方法"></a>2.4 定义通知类，编写通知方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.itheima.advice;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Before;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Pointcut;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.ComponentScan;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * bookDao通知/增强类</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> Vsunks.v</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Blog</span> blog.sunxiaowei.net/996.mba</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>: bookDao通知/增强类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">// 3. 编写共性功能（通知类与通知）</span></span><br><span class="line"><span class="meta">@Component</span> <span class="comment">//   装配进Spring容器</span></span><br><span class="line"><span class="meta">@Aspect</span>     <span class="comment">//  标记该类是一个通知类</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BookDaoAdvice</span> &#123;  <span class="comment">// 类名任意，但是要见名之意</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-5-定义切入点表达式、配置切面-绑定切入点与通知关系"><a href="#2-5-定义切入点表达式、配置切面-绑定切入点与通知关系" class="headerlink" title="2.5 定义切入点表达式、配置切面(绑定切入点与通知关系)"></a>2.5 定义切入点表达式、配置切面(绑定切入点与通知关系)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.itheima.advice;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Before;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Pointcut;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.ComponentScan;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * bookDao通知/增强类</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> Vsunks.v</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Blog</span> blog.sunxiaowei.net/996.mba</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>: bookDao通知/增强类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">// 3. 编写共性功能（通知类与通知）</span></span><br><span class="line"><span class="comment">//              切面 = 切点 + 通知</span></span><br><span class="line"><span class="comment">//              该类称之为切面类，在这里也是通知类</span></span><br><span class="line"><span class="meta">@Component</span> <span class="comment">//   装配进Spring容器</span></span><br><span class="line"><span class="meta">@Aspect</span>     <span class="comment">//  标记该类是一个通知类</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BookDaoAdvice</span> &#123;  <span class="comment">// 类名任意，但是要见名之意</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4. 定义切点表达式</span></span><br><span class="line">    <span class="meta">@Pointcut(&quot;execution(* com.itheima.dao.impl.BookDaoImpl.s*(..))&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">xxxx</span><span class="params">()</span>&#123;&#125; <span class="comment">// 定义一个空，方法用于承接切点表达式</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 5. 绑定切点和通知的关系</span></span><br><span class="line">    <span class="meta">@Before(&quot;xxxx()&quot;)</span>  <span class="comment">// 在目标方法之前前增强。前置增强/通知</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">before</span><span class="params">()</span>&#123;<span class="comment">// 方法名任意，但是要见名之意</span></span><br><span class="line">        System.out.println(<span class="string">&quot;System.currentTimeMillis() = &quot;</span> + System.currentTimeMillis());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-6-在配置类中进行Spring注解组件扫描和开启AOP功能"><a href="#2-6-在配置类中进行Spring注解组件扫描和开启AOP功能" class="headerlink" title="2.6 在配置类中进行Spring注解组件扫描和开启AOP功能"></a>2.6 在配置类中进行Spring注解组件扫描和开启<code>AOP</code>功能</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ComponentScan(&quot;com.itheima&quot;)</span></span><br><span class="line"><span class="meta">@EnableAspectJAutoProxy</span>   <span class="comment">// 开启aop的自动带来，和@Aspect成对出现</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SpringConfig</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-7-测试类和运行结果"><a href="#2-7-测试类和运行结果" class="headerlink" title="2.7 测试类和运行结果"></a>2.7 测试类和运行结果</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1656470218497</span></span><br><span class="line">book dao update ...</span><br></pre></td></tr></table></figure>
+
+<p><img src="/03-Spring-day03-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B061.assets/image-20210730151347354.png" class="lazyload placeholder" data-srcset="/03-Spring-day03-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B061.assets/image-20210730151347354.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="image-20210730151347354"></p>
+<h2 id="3-AOP工作流程"><a href="#3-AOP工作流程" class="headerlink" title="3. AOP工作流程"></a>3. <code>AOP</code>工作流程</h2><h3 id="3-1-工作流程简介"><a href="#3-1-工作流程简介" class="headerlink" title="3.1 工作流程简介"></a>3.1 工作流程简介</h3><ol>
+<li><code>Spring</code>容器启动</li>
+<li>读取所有切面类配置的增强方法和对应的切点表达式</li>
+<li>初始化<code>bean</code>，判定<code>bean</code>对应的类中的方法是否匹配到已经加载的任意切点表达式<ul>
+<li>匹配失败，创建原始对象</li>
+<li>匹配成功，创建原始对象（目标对象）的代理对象</li>
+</ul>
+</li>
+<li>获取<code>bean</code>执行方法<ul>
+<li>获取的bean是原始对象时，调用方法并执行，完成操作</li>
+<li>获取的bean是代理对象时，根据代理对象的运行模式运行原始方法与增强的内容，完成操作</li>
+</ul>
+</li>
+</ol>
+<h3 id="3-2-相关概念"><a href="#3-2-相关概念" class="headerlink" title="3.2 相关概念"></a>3.2 相关概念</h3><ul>
+<li>涉及到的核心概念包括<ul>
+<li>目标对象（Target）：被代理的对象，也叫原始对象，该对象中的方法没有任何功能增强。</li>
+<li>代理对象（Proxy）：代理后生成的对象，由<code>Spring</code>帮我们创建代理对象。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-3-认识目标-x2F-代理对象"><a href="#3-3-认识目标-x2F-代理对象" class="headerlink" title="3.3 认识目标&#x2F;代理对象"></a>3.3 认识目标&#x2F;代理对象</h3><ul>
+<li><p>测试代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">App2</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">ApplicationContext</span> <span class="variable">ctx</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">AnnotationConfigApplicationContext</span>(SpringConfig.class);</span><br><span class="line">        <span class="type">BookDao</span> <span class="variable">bookDao</span> <span class="operator">=</span> ctx.getBean(BookDao.class);</span><br><span class="line">        bookDao.select();</span><br><span class="line">        System.out.println(<span class="string">&quot;bookDao的toString方法返回值： &quot;</span> + bookDao);</span><br><span class="line">        System.out.println(<span class="string">&quot;bookDao所属类的类型 &quot;</span> + bookDao.getClass());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+</li>
+<li><p>切失败情况说明</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 4. 定义切点表达式，该表达式目前能切中select/save方法</span></span><br><span class="line"><span class="meta">@Pointcut(&quot;execution(* com.itheima.dao.impl.BookDaoImpl.s*(..))&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">xxxx</span><span class="params">()</span> &#123;&#125; </span><br></pre></td></tr></table></figure>
+
+<p>目标方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BookDaoImpl</span> <span class="keyword">implements</span> <span class="title class_">BookDao</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">save</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;book dao save ...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">update</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;book dao update ...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">delete</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;book dao delete ...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">select</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;book dao select ...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通知方法中输出内容</span></span><br><span class="line">System.currentTimeMillis() = <span class="number">1656473051674</span></span><br><span class="line">book dao select ...		<span class="comment">// 目标方法</span></span><br><span class="line">bookDao的toString方法返回值： com.itheima.dao.impl.BookDaoImpl@58a9760d </span><br><span class="line">bookDao所属类的类型 <span class="keyword">class</span> <span class="title class_">com</span>.sun.proxy.$Proxy19  <span class="comment">// 真实类型</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+</li>
+<li><p>切成功情况说明</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 4. 定义切点表达式，该表达式目前不能切中切中任何方法</span></span><br><span class="line"><span class="meta">@Pointcut(&quot;execution(* com.itheima.dao.impl.BookDaoImpl.s1*(..))&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">xxxx</span><span class="params">()</span> &#123;&#125; </span><br></pre></td></tr></table></figure>
+
+<p>目标方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BookDaoImpl</span> <span class="keyword">implements</span> <span class="title class_">BookDao</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">save</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;book dao save ...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">update</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;book dao update ...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">delete</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;book dao delete ...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">select</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;book dao select ...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 未输出通知方法中打印内容</span></span><br><span class="line">book dao select ...</span><br><span class="line">bookDao的toString方法返回值： com.itheima.dao.impl.BookDaoImpl@7a8c8dcf</span><br><span class="line">bookDao所属类的类型 <span class="keyword">class</span> <span class="title class_">com</span>.itheima.dao.impl.BookDaoImpl  <span class="comment">// 目标对象，未被代理</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<blockquote>
+<p><strong>注意：</strong></p>
+</blockquote>
+<p>某个Bean被装配Spring容器的时候，就已经明确了自己是代理对象还是目标对象（原始对象）。</p>
+<ul>
+<li>如果某个类中只有部分方法是切点，该类装配的就是代理对象</li>
+<li>如果某个类中所有方法都不是切点，该类装配的就是目标对象。</li>
+</ul>
+<h2 id="x3D-x3D-4-配置-x3D-x3D"><a href="#x3D-x3D-4-配置-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;4. 配置&#x3D;&#x3D;"></a>&#x3D;&#x3D;4. 配置&#x3D;&#x3D;</h2><h3 id="4-1-切点表达式"><a href="#4-1-切点表达式" class="headerlink" title="4.1 切点表达式"></a>4.1 切点表达式</h3><p>通过切点表达式，可以明确业务费代码中，哪些<strong>连接点</strong>被拦截增强成为了<strong>切点</strong>。</p>
+<h4 id="4-1-1-语法格式"><a href="#4-1-1-语法格式" class="headerlink" title="4.1.1 语法格式"></a>4.1.1 语法格式</h4><ul>
+<li><p><strong>切点</strong>：真正被拦截并且增强的方法；</p>
+</li>
+<li><p><strong>切入点表达式</strong>：明确哪些连接点要成为切点的表达式。</p>
+<p><strong>使用位置</strong>：可切接口，也可以切实现类。</p>
+<ul>
+<li>描述方式一：切接口。接口的所有子类都会被切中。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 执行com.itheima.dao包下的BookDao接口中的无参数update方法</span></span><br><span class="line">execution(<span class="keyword">void</span> com.itheima.dao.BookDao.update())</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>描述方式二：切实现类。只对指定的类生效。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 执行com.itheima.dao.impl包下的BookDaoImpl类中的无参数update方法</span></span><br><span class="line">execution(<span class="keyword">void</span> com.itheima.dao.impl.BookDaoImpl.update())</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>切入点表达式标准格式</strong>：<code>动作关键字(访问修饰符  返回值  包名.类/接口名.方法名(参数) 异常名）</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">execution(public User com.itheima.service.UserService.findById(int))</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>动作关键字：描述切入点的行为动作，例如execution表示执行到指定切入点</li>
+<li><del>访问修饰符：public，private等，可以省略</del></li>
+<li>返回值：写返回值类型</li>
+<li>包名：多级包使用点连接</li>
+<li>类&#x2F;接口名：</li>
+<li>方法名：</li>
+<li>参数：直接写参数的类型，多个类型用逗号隔开</li>
+<li><del>异常名：方法定义中抛出指定异常，可以省略</del></li>
+</ul>
+</li>
+</ul>
+<h4 id="4-1-2-通配符"><a href="#4-1-2-通配符" class="headerlink" title="4.1.2 通配符"></a>4.1.2 通配符</h4><ul>
+<li>作用：切入点表达式中可以使用通配符，统配某一部分连接点</li>
+</ul>
+<ul>
+<li><p><code>*</code>：代表单个独立的任意名称，可以独立出现，也可以作为前缀或者后缀的匹配符出现</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 匹配com.itheima包下的任意包中的UserService类或接口中所有find开头的带有一个参数的方法 --&gt;</span></span><br><span class="line">execution（public * com.itheima.*.UserService.find*(*))</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ul>
+<li><p><code>..</code> ：代表多个连续的任意符号（≥0），可以独立出现，常用于简化包名与参数的书写</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 匹配com包下的任意包中的UserService类或接口中所有名称为findById的方法 --&gt;</span></span><br><span class="line">execution（public User com..UserService.findById(..))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>+</code>：专用于匹配子类类型</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 匹配所有业务类/接口方法  --&gt;</span></span><br><span class="line">execution(* *..*Service+.*(..))</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>常用语法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	访问权限修饰符/异常类型 可以省略不写</span></span><br><span class="line"><span class="comment">    返回值类型、包名、类名、方法名、参数类型列表中可以使用* 统配，代表任意一个或前后缀</span></span><br><span class="line"><span class="comment">    类名/接口名中+表示匹配子类类型</span></span><br><span class="line"><span class="comment">    从后往前依次确定方法、类/接口、包</span></span><br><span class="line"><span class="comment">    .在非形参位置，表示当前包下/当前类下</span></span><br><span class="line"><span class="comment">    .. 在非参数位置，表示当前包及其子包下的类/接口</span></span><br><span class="line"><span class="comment">    .. 在形参位置，表示任意参数类型及个数</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="4-1-3-书写技巧"><a href="#4-1-3-书写技巧" class="headerlink" title="4.1.3 书写技巧"></a>4.1.3 书写技巧</h4><ul>
+<li>所有代码按照标准规范开发，否则以下技巧全部失效</li>
+<li>切点表达式可以切接口，也可以切实现类；推荐切接口。</li>
+<li><strong>访问权限修饰符</strong>：切点表达式中，访问权限修饰符可以省略不写；不写表示不限制。</li>
+<li><strong>返回值类型</strong>：增删改操作使用精准类型加速匹配，对于查询操作使用<code>*</code>统配简化写法</li>
+<li>**<font color="red">包名</font>**：尽量不要使用<code>..</code>，效率过低，常用`*&#96;做单个包描述匹配，或不是用统配做精准匹配</li>
+<li>**<font color="red">接口名&#x2F;类名</font><strong>：书写名称与业务模块相关的</strong>&#x3D;&#x3D;采用*匹配&#x3D;&#x3D;**，例如UserService书写成*Service，绑定业务层接口名</li>
+<li>**<font color="red">方法名</font><strong>：书写以</strong>&#x3D;&#x3D;动词&#x3D;&#x3D;<strong>进行</strong>&#x3D;&#x3D;精准匹配&#x3D;&#x3D;*<em>，名词采用</em>匹配，例如getById书写成getBy*,selectAll书写成selectAll</li>
+<li><strong>参数</strong>：规则较为复杂，根据业务方法灵活调整</li>
+<li><strong>异常</strong>：切点表达式中一般不会通过是否抛出异常、抛出异常类型做区分匹配。</li>
+</ul>
+<h3 id="4-2-通知类型"><a href="#4-2-通知类型" class="headerlink" title="4.2  通知类型"></a>4.2  通知类型</h3><p>也就是增强类型，在目标方法执行的什么时机增强。<code>eg</code>：目标方法执行前、后、异常等等。</p>
+<h4 id="4-2-1-支持的类型"><a href="#4-2-1-支持的类型" class="headerlink" title="4.2.1  支持的类型"></a>4.2.1  支持的类型</h4><ul>
+<li><p><code>Aspectj</code>支持的通知类型</p>
+<p>前置、后置、异常、<del>引介</del>、环绕、最终</p>
+</li>
+<li><p><code>Spring</code>原生支持的通知类型</p>
+<p>前置、后置、异常、<del>引介</del>、环绕。没有最终。</p>
+<p><code>Spring</code>中目前使用的是<code>Aspectj</code>的配置方式。</p>
+</li>
+<li><p>各种通知的执行时机和顺序</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 四种基本类型的通知执行的时机</span></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="comment">// 前置通知   </span></span><br><span class="line">    <span class="comment">// 目标方法</span></span><br><span class="line">    <span class="comment">// 后置通知  </span></span><br><span class="line">&#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">    <span class="comment">// 异常通知  </span></span><br><span class="line">&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">    <span class="comment">// 最终通知 </span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 环绕通知一个打4个</span></span><br><span class="line"><span class="comment">// 环绕通知的用法</span></span><br><span class="line"><span class="meta">@Around(&quot;pt()&quot;)</span></span><br><span class="line"><span class="keyword">public</span> Object <span class="title function_">around</span><span class="params">(ProceedingJoinPoint pjp)</span> <span class="keyword">throw</span> Throwable &#123;</span><br><span class="line">    <span class="type">Object</span> <span class="variable">ret</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">  	<span class="keyword">try</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;前置&quot;</span>);</span><br><span class="line">        <span class="comment">//调用目标方法，就是切点方法</span></span><br><span class="line">        ret = pjp.proceed();</span><br><span class="line">        System.out.println(<span class="string">&quot;后置&quot;</span> + ret);</span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">catch</span> (Throwable throwable) &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;异常&quot;</span> + throwable.getMessage());</span><br><span class="line">        <span class="keyword">throw</span> throwable;</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;最终&quot;</span> + ret);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>环绕通知注意事项</p>
+<blockquote>
+<ol>
+<li>环绕通知最强大；也最特殊<ol>
+<li>强大：一个顶四个</li>
+<li>特殊：通知方法内部需要手动调用目标方法，且手动return返回值</li>
+</ol>
+</li>
+<li>形参上需要添加<code>ProceedingJoinPoint</code>的对象，封装的切点（当前的目标方法）</li>
+<li>使用2中形参<code>pjp.proceed()</code>，手动调用目标方法</li>
+<li>手动调用目标方法时的返回值需要<code>return</code>出去，并且类型要是<code>Object</code>类型否则外界无法获取该值</li>
+<li>调用目标方法时，需要处理异常，建议使用<code>try…catch</code>，并且使用最大号的异常<code>throwable</code>来处理</li>
+</ol>
+</blockquote>
+</li>
+<li><p>四种基类型通知演示代码</p>
+</li>
+<li><p>通过类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.itheima.aop;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.JoinPoint;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.ProceedingJoinPoint;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.*;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyAdvice</span> &#123;</span><br><span class="line">    <span class="meta">@Pointcut(&quot;execution(void com.itheima.dao.BookDao.update())&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">pt</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Pointcut(&quot;execution(Integer com.itheima.dao.BookDao.select())&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">pt2</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// @Before(&quot;pt()&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">before</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;前置通知before advice ...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// @After(&quot;MyAdvice.pt()&quot;) // 使用其他类中定义的切点表达式</span></span><br><span class="line">    <span class="comment">// @After(&quot;pt()&quot;) // 最终</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">after</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;最终通知after advice ...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// @AfterReturning(&quot;pt()&quot;) // 后置</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterReturning</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;后置通知afterReturning advice ...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// @AfterThrowing(&quot;pt()&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterThrowing111</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;异常通知afterThrowing advice ...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">package</span> com.itheima;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.itheima.config.SpringConfig;</span><br><span class="line"><span class="keyword">import</span> com.itheima.dao.BookDao;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.AnnotationConfigApplicationContext;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">App</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">ApplicationContext</span> <span class="variable">ctx</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">AnnotationConfigApplicationContext</span>(SpringConfig.class);</span><br><span class="line">        <span class="type">BookDao</span> <span class="variable">bookDao</span> <span class="operator">=</span> ctx.getBean(BookDao.class);</span><br><span class="line">        bookDao.update();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+</li>
+<li><p>环绕通知演示代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.itheima.aop;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.JoinPoint;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.ProceedingJoinPoint;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.*;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyAdvice</span> &#123;</span><br><span class="line">    <span class="meta">@Pointcut(&quot;execution(void com.itheima.dao.BookDao.update())&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">pt</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Pointcut(&quot;execution(Integer com.itheima.dao.BookDao.select())&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">pt2</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> pjp 封装了切点对象，正在被拦截并处理的连接点</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Around(&quot;pt2()&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">aroundxxx</span><span class="params">(ProceedingJoinPoint pjp)</span> <span class="keyword">throws</span> Throwable &#123;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">result</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 编写增强/通知代码</span></span><br><span class="line">            System.out.println(<span class="string">&quot;环绕前置通知&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">                因为不能明确切点方法（目标方法）有无返回值</span></span><br><span class="line"><span class="comment">                所以要统一按照有返回值类处理</span></span><br><span class="line"><span class="comment">                    如果目标方法有返回值，就接受并返回实际的一个值</span></span><br><span class="line"><span class="comment">                    如果目标方法没有返回值，就接受并返回了一个null</span></span><br><span class="line"><span class="comment">                因为无法明确切点方法（目标方法）是否抛了异常，</span></span><br><span class="line"><span class="comment">                    所以proceed()抛出一个最大号的异常，已兼容所有情况。</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            <span class="comment">// 手动显式的调用目标方法</span></span><br><span class="line">            result = pjp.proceed();</span><br><span class="line">            System.out.println(<span class="string">&quot;环绕后置通知&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable e) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;环绕异常通知&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;环绕最终通知&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>通知类&#x2F;切面类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.itheima;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.itheima.config.SpringConfig;</span><br><span class="line"><span class="keyword">import</span> com.itheima.dao.BookDao;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.AnnotationConfigApplicationContext;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">App2Around</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">ApplicationContext</span> <span class="variable">ctx</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">AnnotationConfigApplicationContext</span>(SpringConfig.class);</span><br><span class="line">        <span class="type">BookDao</span> <span class="variable">bookDao</span> <span class="operator">=</span> ctx.getBean(BookDao.class);</span><br><span class="line">        <span class="comment">// 调用代理对象的方法，并回去其返回值</span></span><br><span class="line">        <span class="type">Integer</span> <span class="variable">select</span> <span class="operator">=</span> bookDao.select();</span><br><span class="line">        System.out.println(<span class="string">&quot;select = &quot;</span> + select);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="4-2-2-AOP通知详解"><a href="#4-2-2-AOP通知详解" class="headerlink" title="4.2.2 AOP通知详解"></a>4.2.2 AOP通知详解</h4><h5 id="4-2-2-1-前置通知"><a href="#4-2-2-1-前置通知" class="headerlink" title="4.2.2.1 前置通知"></a>4.2.2.1 前置通知</h5><ul>
+<li>名称：@Before</li>
+<li>类型：**&#x3D;&#x3D;方法注解&#x3D;&#x3D;**</li>
+<li>位置：通知方法定义上方</li>
+<li>作用：设置当前通知方法与切入点之间的绑定关系，当前通知方法在原始切入点方法前运行</li>
+<li>范例：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Before(&quot;pt()&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">before</span><span class="params">()</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;before advice ...&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="4-2-2-2-后置通知"><a href="#4-2-2-2-后置通知" class="headerlink" title="4.2.2.2 后置通知"></a>4.2.2.2 后置通知</h5><ul>
+<li>名称：@After</li>
+<li>类型：&#x3D;&#x3D;<strong>方法注解</strong>&#x3D;&#x3D;</li>
+<li>位置：通知方法定义上方</li>
+<li>作用：设置当前通知方法与切入点之间的绑定关系，当前通知方法在原始切入点方法后运行</li>
+<li>范例：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@After(&quot;pt()&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">after</span><span class="params">()</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;after advice ...&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="4-2-2-3-返回后通知"><a href="#4-2-2-3-返回后通知" class="headerlink" title="4.2.2.3 返回后通知"></a>4.2.2.3 返回后通知</h5><ul>
+<li>名称：@AfterReturning（了解）</li>
+<li>类型：**&#x3D;&#x3D;方法注解&#x3D;&#x3D;**</li>
+<li>位置：通知方法定义上方</li>
+<li>作用：设置当前通知方法与切入点之间的绑定关系，当前通知方法在原始切入点方法正常执行完毕后运行</li>
+<li>范例：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@AfterReturning(&quot;pt()&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterReturning</span><span class="params">()</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;afterReturning advice ...&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="4-2-2-4-抛出异常后通知"><a href="#4-2-2-4-抛出异常后通知" class="headerlink" title="4.2.2.4 抛出异常后通知"></a>4.2.2.4 抛出异常后通知</h5><ul>
+<li>名称：@AfterThrowing（了解）</li>
+<li>类型：**&#x3D;&#x3D;方法注解&#x3D;&#x3D;**</li>
+<li>位置：通知方法定义上方</li>
+<li>作用：设置当前通知方法与切入点之间的绑定关系，当前通知方法在原始切入点方法运行抛出异常后执行</li>
+<li>范例：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@AfterThrowing(&quot;pt()&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterThrowing</span><span class="params">()</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;afterThrowing advice ...&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="4-2-2-5-环绕通知"><a href="#4-2-2-5-环绕通知" class="headerlink" title="4.2.2.5 环绕通知"></a>4.2.2.5 环绕通知</h5><ul>
+<li>名称：@Around（重点，常用）</li>
+<li>类型：**&#x3D;&#x3D;方法注解&#x3D;&#x3D;**</li>
+<li>位置：通知方法定义上方</li>
+<li>作用：设置当前通知方法与切入点之间的绑定关系，当前通知方法在原始切入点方法前后运行</li>
+<li>范例：：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Around(&quot;pt()&quot;)</span></span><br><span class="line"><span class="keyword">public</span> Object <span class="title function_">around</span><span class="params">(ProceedingJoinPoint pjp)</span> <span class="keyword">throws</span> Throwable &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;around before advice ...&quot;</span>);</span><br><span class="line">    <span class="type">Object</span> <span class="variable">ret</span> <span class="operator">=</span> pjp.proceed();</span><br><span class="line">    System.out.println(<span class="string">&quot;around after advice ...&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="4-2-3-工作中用法"><a href="#4-2-3-工作中用法" class="headerlink" title="4.2.3 工作中用法"></a>4.2.3 工作中用法</h4><p>优先使用环绕通知，最简单，最强大；但是需要手动调用目标方法，并return返回值。</p>
+<h3 id="4-3-案例：统计接口万次执行效率"><a href="#4-3-案例：统计接口万次执行效率" class="headerlink" title="4.3 案例：统计接口万次执行效率"></a>4.3 案例：统计接口万次执行效率</h3><h2 id="5-获取AOP切点数据"><a href="#5-获取AOP切点数据" class="headerlink" title="5. 获取AOP切点数据"></a>5. 获取<code>AOP</code>切点数据</h2><h3 id="5-1-可以获取什么数据"><a href="#5-1-可以获取什么数据" class="headerlink" title="5.1 可以获取什么数据"></a>5.1 可以获取什么数据</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Around(&quot;pt()&quot;)</span></span><br><span class="line"><span class="keyword">public</span> Object <span class="title function_">around</span><span class="params">(ProceedingJoinPoint pjp)</span> <span class="keyword">throw</span> Throwable &#123;</span><br><span class="line">    <span class="type">Object</span> <span class="variable">ret</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">  	<span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="comment">// 前置通知，可以获取参数、方法名称签名信息</span></span><br><span class="line">        System.out.println(<span class="string">&quot;前置&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//调用目标方法，就是切点方法</span></span><br><span class="line">        ret = pjp.proceed();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 后置通知，可以获取目标方法的返回值、方法名称签名信息、参数信息</span></span><br><span class="line">        System.out.println(<span class="string">&quot;后置&quot;</span> + ret);</span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">catch</span> (Throwable throwable) &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;异常&quot;</span> + throwable.getMessage());</span><br><span class="line">        <span class="comment">// 异常通知，可以获取参数信息、方法名称签名信息、异常对象</span></span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="comment">// 最终通知，可以获取目标方法参数信息、方法名称签名信息</span></span><br><span class="line">        System.out.println(<span class="string">&quot;最终&quot;</span> + ret);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="5-2-获取数据"><a href="#5-2-获取数据" class="headerlink" title="5.2 获取数据"></a>5.2 获取数据</h3><h4 id="5-2-1-获取切点方法参数"><a href="#5-2-1-获取切点方法参数" class="headerlink" title="5.2.1 获取切点方法参数"></a>5.2.1 获取切点方法参数</h4><p>在<strong>前置通知</strong>和<strong>环绕通知</strong>中都可以获取到连接点方法的参数们</p>
+<ul>
+<li><code>JoinPoint</code>对象描述了连接点方法的运行状态，可以获取到原始方法的调用参数</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Before(&quot;pt()&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">before</span><span class="params">(JoinPoint jp)</span> &#123;</span><br><span class="line">    Object[] args = jp.getArgs(); <span class="comment">//获取连接点方法的参数们</span></span><br><span class="line">    System.out.println(Arrays.toString(args));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>ProccedJointPoint</code>是<code>JoinPoint</code>的子类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Around(&quot;pt()&quot;)</span></span><br><span class="line"><span class="keyword">public</span> Object <span class="title function_">around</span><span class="params">(ProceedingJoinPoint pjp)</span> <span class="keyword">throws</span> Throwable &#123;</span><br><span class="line">    Object[] args = pjp.getArgs(); <span class="comment">//获取连接点方法的参数们</span></span><br><span class="line">    System.out.println(Arrays.toString(args));</span><br><span class="line">    <span class="type">Object</span> <span class="variable">ret</span> <span class="operator">=</span> pjp.proceed();</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-2-2-获取切点方法返回值"><a href="#5-2-2-获取切点方法返回值" class="headerlink" title="5.2.2 获取切点方法返回值"></a>5.2.2 获取切点方法返回值</h4><p>在<strong>返回后通知</strong>和<strong>环绕通知</strong>中都可以获取切点方法的返回值</p>
+<ul>
+<li>抛出异常后通知可以获取切入点方法中出现的异常信息，使用形参可以接收对应的异常对象</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@AfterReturning(value = &quot;pt()&quot;,returning = &quot;ret&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterReturning</span><span class="params">(String ret)</span> &#123; <span class="comment">//通知方法形参变量名要和注解returning属性值一致</span></span><br><span class="line">    System.out.println(<span class="string">&quot;afterReturning advice ...&quot;</span>+ret);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>环绕通知中可以手工书写对原始方法的调用，得到的结果即为原始方法的返回值</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Around(&quot;pt()&quot;)</span></span><br><span class="line"><span class="keyword">public</span> Object <span class="title function_">around</span><span class="params">(ProceedingJoinPoint pjp)</span> <span class="keyword">throws</span> Throwable &#123;</span><br><span class="line">    <span class="comment">// 手动调用连接点方法，返回值就是连接点方法的返回值</span></span><br><span class="line">    <span class="type">Object</span> <span class="variable">ret</span> <span class="operator">=</span> pjp.proceed();</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-2-3-获取切点方法异常对象"><a href="#5-2-3-获取切点方法异常对象" class="headerlink" title="5.2.3 获取切点方法异常对象"></a>5.2.3 获取切点方法异常对象</h4><p>在<strong>抛出异常后</strong>通知和<strong>环绕通知</strong>中都可以获取到连接点方法中出现的异常</p>
+<ul>
+<li>抛出异常后通知可以获取切入点方法中出现的异常信息，使用形参可以接收对应的异常对象</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@AfterThrowing(value = &quot;pt()&quot;,throwing = &quot;t&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterThrowing</span><span class="params">(Throwable t)</span> &#123;<span class="comment">//通知方法形参变量名要和注解returning属性值一致</span></span><br><span class="line">    System.out.println(<span class="string">&quot;afterThrowing advice ...&quot;</span>+ t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>抛出异常后通知可以获取切入点方法运行的异常信息，使用形参可以接收运行时抛出的异常对象</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Around(&quot;pt()&quot;)</span></span><br><span class="line"><span class="keyword">public</span> Object <span class="title function_">around</span><span class="params">(ProceedingJoinPoint pjp)</span>  &#123;</span><br><span class="line">    <span class="type">Object</span> <span class="variable">ret</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="comment">//此处需要try...catch处理，catch中捕获到的异常就是连接点方法中抛出的异常</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        ret = pjp.proceed();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Throwable t) &#123;</span><br><span class="line">        t.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="5-2-4-获取方法形参和方法签名"><a href="#5-2-4-获取方法形参和方法签名" class="headerlink" title="5.2.4 获取方法形参和方法签名"></a>5.2.4 获取方法形参和方法签名</h4><p>所有通知中均可获取</p>
+<h3 id="5-3-完整代码"><a href="#5-3-完整代码" class="headerlink" title="5.3 完整代码"></a>5.3 完整代码</h3><ul>
+<li><p>目标类父接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.itheima.dao;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">BookDao</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> Integer <span class="title function_">update</span><span class="params">(<span class="type">int</span> num)</span>;</span><br><span class="line">    <span class="keyword">public</span> Integer <span class="title function_">select</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>目标类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.itheima.dao.impl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.itheima.dao.BookDao;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Repository;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BookDaoImpl</span> <span class="keyword">implements</span> <span class="title class_">BookDao</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Integer <span class="title function_">update</span><span class="params">(<span class="type">int</span> num)</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;book dao update is running ...&quot;</span>);</span><br><span class="line">        System.out.println(<span class="number">1</span>/<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">200</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Integer <span class="title function_">select</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;目标方法：book dao select is running ...&quot;</span>);</span><br><span class="line">        System.out.println(<span class="number">1</span>/<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">100</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>环绕通知获取数据代码</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.itheima.aop;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.ProceedingJoinPoint;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.Signature;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Around;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Pointcut;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyAdviceAround</span> &#123;</span><br><span class="line">    <span class="meta">@Pointcut(&quot;execution(void com.itheima.dao.BookDao.update())&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">pt</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Pointcut(&quot;execution(Integer com.itheima.dao.BookDao.select())&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">pt2</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> pjp 封装了切点对象，正在被拦截并处理的连接点</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Around(&quot;pt2()&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">aroundxxx</span><span class="params">(ProceedingJoinPoint pjp)</span> <span class="keyword">throws</span> Throwable &#123;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">result</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        Object[] args = pjp.getArgs();</span><br><span class="line">        <span class="type">Signature</span> <span class="variable">signature</span> <span class="operator">=</span> pjp.getSignature();</span><br><span class="line">        <span class="type">String</span> <span class="variable">methodName</span> <span class="operator">=</span> signature.getName();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 前置通知获取数据</span></span><br><span class="line">            System.out.println(<span class="string">&quot;环绕前置通知获取方法参数：&quot;</span> + Arrays.toString(args));</span><br><span class="line">            System.out.println(<span class="string">&quot;环绕前置通知获取方法名&quot;</span> + methodName);</span><br><span class="line">            <span class="comment">// 手动显式的调用目标方法</span></span><br><span class="line">            result = pjp.proceed();</span><br><span class="line">            System.out.println(<span class="string">&quot;环绕后置通知获取方法参数&quot;</span> + Arrays.toString(args));</span><br><span class="line">            System.out.println(<span class="string">&quot;环绕后置通知获取方法名&quot;</span> + methodName);</span><br><span class="line">            System.out.println(<span class="string">&quot;环绕后置通知获取方法名返回值&quot;</span> + result);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable e) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;环绕异常通知获取方法参数&quot;</span> + Arrays.toString(args));</span><br><span class="line">            System.out.println(<span class="string">&quot;环绕异常通知获取方法名&quot;</span> + methodName);</span><br><span class="line">            System.out.println(<span class="string">&quot;环绕异常通知获取异常对象&quot;</span> + e);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;环绕最终通知获取方法参数：Arrays.toString(args) = &quot;</span> + Arrays.toString(args));</span><br><span class="line">            System.out.println(<span class="string">&quot;环绕最终通知获取方法名称&quot;</span> + methodName);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>没有异常时打印结果</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    环绕前置通知获取方法参数：[]</span></span><br><span class="line"><span class="comment">    环绕前置通知获取方法名select</span></span><br><span class="line"><span class="comment">    目标方法：book dao select is running ...</span></span><br><span class="line"><span class="comment">    环绕后置通知获取方法参数[]</span></span><br><span class="line"><span class="comment">    环绕后置通知获取方法名select</span></span><br><span class="line"><span class="comment">    环绕后置通知获取方法名返回值100</span></span><br><span class="line"><span class="comment">    环绕最终通知获取方法参数：Arrays.toString(args) = []</span></span><br><span class="line"><span class="comment">    环绕最终通知获取方法名称select</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>有异常时打印结果</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    环绕前置通知获取方法参数：[]</span></span><br><span class="line"><span class="comment">    环绕前置通知获取方法名select</span></span><br><span class="line"><span class="comment">    目标方法：book dao select is running ...</span></span><br><span class="line"><span class="comment">    环绕异常通知获取方法参数[]</span></span><br><span class="line"><span class="comment">    环绕异常通知获取方法名select</span></span><br><span class="line"><span class="comment">    环绕异常通知获取异常对象java.lang.ArithmeticException: / by zero</span></span><br><span class="line"><span class="comment">    环绕最终通知获取方法参数：Arrays.toString(args) = []</span></span><br><span class="line"><span class="comment">    环绕最终通知获取方法名称select</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+</li>
+<li><p>四种基本类型通知获取数据代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.itheima.aop;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.JoinPoint;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.ProceedingJoinPoint;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.*;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyAdviceBasic</span> &#123;</span><br><span class="line">    <span class="meta">@Pointcut(&quot;execution(* com.itheima.dao.BookDao.update(*))&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">pt</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Pointcut(&quot;execution(Integer com.itheima.dao.BookDao.select())&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">pt2</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> jp 封装切点方法的对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Before(&quot;pt()&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">before</span><span class="params">(JoinPoint jp)</span> &#123;</span><br><span class="line">        Object[] args = jp.getArgs();</span><br><span class="line">        System.out.println(<span class="string">&quot;前置通知获取方法参数：&quot;</span> + Arrays.toString(args));</span><br><span class="line">        <span class="type">String</span> <span class="variable">methodName</span> <span class="operator">=</span> jp.getSignature().getName();</span><br><span class="line">        System.out.println(<span class="string">&quot;前置通知获取方法名称&quot;</span> + methodName);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 在后置通知的通知方法中，如果想获取切点方法的返回值</span></span><br><span class="line"><span class="comment">     * 1. 需要在方法形参位置添加一个变量，该变量会自动接受返回值</span></span><br><span class="line"><span class="comment">     * 2. 在<span class="doctag">@AfterReturning</span>中通过其returnning属性绑定上一步添加的形参名</span></span><br><span class="line"><span class="comment">     * 注意事项：</span></span><br><span class="line"><span class="comment">     * 如果通知方法中，需要使用切点方法封装对象JoinPoint，该对象必须放在形参列表第一个位置</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> jp</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@AfterReturning(value = &quot;pt()&quot;, returning = &quot;result&quot;)</span> <span class="comment">// 后置</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterReturning</span><span class="params">(JoinPoint jp, Object result)</span> &#123;</span><br><span class="line">        Object[] args = jp.getArgs();</span><br><span class="line">        System.out.println(<span class="string">&quot;后置通知获取方法参数：&quot;</span> + Arrays.toString(args));</span><br><span class="line">        <span class="type">String</span> <span class="variable">methodName</span> <span class="operator">=</span> jp.getSignature().getName();</span><br><span class="line">        System.out.println(<span class="string">&quot;后置通知获取方法名称&quot;</span> + methodName);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//AOP自动将返回值复制给returning属性绑定的同名形参，</span></span><br><span class="line">        <span class="comment">// 我们可以在通知方法内部使用该形参，也就是在使用返回值</span></span><br><span class="line">        System.out.println(<span class="string">&quot;后置通知获取方法的返回值&quot;</span> + result);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@AfterThrowing(value = &quot;pt()&quot;,throwing = &quot;e&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterThrowing111</span><span class="params">(JoinPoint jp,Throwable e)</span> &#123;</span><br><span class="line">        Object[] args = jp.getArgs();</span><br><span class="line">        System.out.println(<span class="string">&quot;异常通知获取方法参数：&quot;</span> + Arrays.toString(args));</span><br><span class="line">        <span class="type">String</span> <span class="variable">methodName</span> <span class="operator">=</span> jp.getSignature().getName();</span><br><span class="line">        System.out.println(<span class="string">&quot;异常通知获取方法名称&quot;</span> + methodName);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;异常通知获取方法的异常信息&quot;</span> + e);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@After(&quot;pt()&quot;)</span> <span class="comment">// 最终</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">after</span><span class="params">(JoinPoint jp)</span> &#123;</span><br><span class="line">        Object[] args = jp.getArgs();</span><br><span class="line">        System.out.println(<span class="string">&quot;最终通知获取方法参数：&quot;</span> + Arrays.toString(args));</span><br><span class="line">        <span class="type">String</span> <span class="variable">methodName</span> <span class="operator">=</span> jp.getSignature().getName();</span><br><span class="line">        System.out.println(<span class="string">&quot;最终通知获取方法名称&quot;</span> + methodName);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>没有异常时打印结果</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    前置通知获取方法参数：[1]</span></span><br><span class="line"><span class="comment">    前置通知获取方法名称update</span></span><br><span class="line"><span class="comment">    book dao update is running ...</span></span><br><span class="line"><span class="comment">    后置通知获取方法参数：[1]</span></span><br><span class="line"><span class="comment">    后置通知获取方法名称update</span></span><br><span class="line"><span class="comment">    后置通知获取方法的返回值200</span></span><br><span class="line"><span class="comment">    最终通知获取方法参数：[1]</span></span><br><span class="line"><span class="comment">    最终通知获取方法名称update</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>有异常时打印结果</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    前置通知获取方法参数：[1]</span></span><br><span class="line"><span class="comment">    前置通知获取方法名称update</span></span><br><span class="line"><span class="comment">    book dao update is running ...</span></span><br><span class="line"><span class="comment">    异常通知获取方法参数：[1]</span></span><br><span class="line"><span class="comment">    异常通知获取方法名称update</span></span><br><span class="line"><span class="comment">    异常通知获取方法的异常信息java.lang.ArithmeticException: / by zero</span></span><br><span class="line"><span class="comment">    最终通知获取方法参数：[1]</span></span><br><span class="line"><span class="comment">    最终通知获取方法名称update</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="5-4-案例：百度网盘分享链接密码去空"><a href="#5-4-案例：百度网盘分享链接密码去空" class="headerlink" title="5.4 案例：百度网盘分享链接密码去空"></a>5.4 案例：百度网盘分享链接密码去空</h3><h4 id="5-4-1-需求和分析"><a href="#5-4-1-需求和分析" class="headerlink" title="5.4.1 需求和分析"></a>5.4.1 需求和分析</h4><p>需求：对百度网盘分享链接输入密码时尾部多输入的空格做兼容处理</p>
+<p><img src="/03-Spring-day03-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B061.assets/image-20210731193059709.png" class="lazyload placeholder" data-srcset="/03-Spring-day03-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B061.assets/image-20210731193059709.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="image-20210731193059709"></p>
+<p>分析：</p>
+<ol>
+<li><p>在业务方法执行之前对所有的输入参数进行格式处理——trim()</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">	去除字符串两端的空格</span></span><br><span class="line"><span class="comment">	&quot;   abc   &quot;  —&gt; &quot;abc&quot;</span></span><br><span class="line"><span class="comment">	&quot;a b c &quot; ---&gt; &quot;a b c&quot;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>使用处理后的参数调用原始方法——<strong>环绕通知</strong>中存在对原始方法的调用</p>
+</li>
+</ol>
+<h3 id="5-4-2-代码实现"><a href="#5-4-2-代码实现" class="headerlink" title="5.4.2 代码实现"></a>5.4.2 代码实现</h3><h5 id="5-4-2-0-环境准备"><a href="#5-4-2-0-环境准备" class="headerlink" title="5.4.2.0 环境准备"></a>5.4.2.0 环境准备</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//-------------service层代码-----------------------</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">ResourcesService</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">openURL</span><span class="params">(String url ,String password)</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ResourcesServiceImpl</span> <span class="keyword">implements</span> <span class="title class_">ResourcesService</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ResourcesDao resourcesDao;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">openURL</span><span class="params">(String url, String password)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> resourcesDao.readResources(url,password);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//-------------dao层代码-----------------------</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">ResourcesDao</span> &#123;</span><br><span class="line">    <span class="type">boolean</span> <span class="title function_">readResources</span><span class="params">(String url, String password)</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ResourcesDaoImpl</span> <span class="keyword">implements</span> <span class="title class_">ResourcesDao</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">readResources</span><span class="params">(String url, String password)</span> &#123;</span><br><span class="line">        System.out.println(password.length());</span><br><span class="line">        <span class="comment">//模拟校验</span></span><br><span class="line">        <span class="keyword">return</span> password.equals(<span class="string">&quot;xxxx&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="5-4-2-1-编写通知类"><a href="#5-4-2-1-编写通知类" class="headerlink" title="5.4.2.1 编写通知类"></a>5.4.2.1 编写通知类</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.itheima.advice;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.ProceedingJoinPoint;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Around;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Pointcut;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 处理百度网盘链接密码的切面类</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> Vsunks.v</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Blog</span> blog.sunxiaowei.net/996.mba</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>: 处理百度网盘链接密码的切面类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span> <span class="comment">// 切面 = 切点 + 通知</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BaiduAdvice</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 切点表达式。所有业务类中两个String类型参数且返回值为boolean类型的方法</span></span><br><span class="line">    <span class="meta">@Pointcut(&quot;execution(boolean com.itheima.service.*Service.*(String,String))&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">ptttt</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 通知方法。因为要手动把修改后的密码传递调用，所以只能使用环绕通知。</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  各种类型都写的很死，返回值类型写死为boolean 参数类型写死为String。</span></span><br><span class="line"><span class="comment">     *  生产环境不建议这么写，因为要通用。</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> pjp</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Throwable</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Around(&quot;ptttt()&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">trimPaswword</span><span class="params">(ProceedingJoinPoint pjp)</span> <span class="keyword">throws</span> Throwable &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获取参数，得到密码并trim</span></span><br><span class="line">        Object[] args = pjp.getArgs();</span><br><span class="line">        <span class="type">String</span> <span class="variable">pwd</span> <span class="operator">=</span> (String) args[<span class="number">1</span>];</span><br><span class="line">        args[<span class="number">1</span>] = pwd.trim();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 调用目标方法，传递修改后的参数</span></span><br><span class="line">        <span class="type">Boolean</span> <span class="variable">result</span> <span class="operator">=</span> (Boolean) pjp.proceed(args);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 返回目标方法返回值</span></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="5-4-2-2-在SpringConfig配置类上开启AOP注解功能"><a href="#5-4-2-2-在SpringConfig配置类上开启AOP注解功能" class="headerlink" title="5.4.2.2 在SpringConfig配置类上开启AOP注解功能"></a>5.4.2.2 在<code>SpringConfig</code>配置类上开启<code>AOP</code>注解功能</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ComponentScan(&quot;com.itheima&quot;)</span></span><br><span class="line"><span class="meta">@EnableAspectJAutoProxy</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SpringConfig</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="5-4-2-3-运行测试类，查看结果"><a href="#5-4-2-3-运行测试类，查看结果" class="headerlink" title="5.4.2.3 运行测试类，查看结果"></a>5.4.2.3 运行测试类，查看结果</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.itheima.config.SpringConfig;</span><br><span class="line"><span class="keyword">import</span> com.itheima.service.ResourcesService;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.AnnotationConfigApplicationContext;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">App</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">ApplicationContext</span> <span class="variable">ctx</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">AnnotationConfigApplicationContext</span>(SpringConfig.class);</span><br><span class="line">        <span class="type">ResourcesService</span> <span class="variable">resourcesService</span> <span class="operator">=</span> ctx.getBean(ResourcesService.class);</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">flag</span> <span class="operator">=</span> resourcesService.openURL(<span class="string">&quot;http://pan.baidu.com/haha&quot;</span>, <span class="string">&quot;  xxxx &quot;</span>);</span><br><span class="line">        System.out.println(flag);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h2 id="x3D-x3D-6-Spring事务管理-x3D-x3D"><a href="#x3D-x3D-6-Spring事务管理-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;6. Spring事务管理&#x3D;&#x3D;"></a>&#x3D;&#x3D;6. Spring事务管理&#x3D;&#x3D;</h2><h3 id="x3D-x3D-6-1-概念-amp-作用-x3D-x3D"><a href="#x3D-x3D-6-1-概念-amp-作用-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;6.1 概念&amp;作用&#x3D;&#x3D;"></a>&#x3D;&#x3D;6.1 概念&amp;作用&#x3D;&#x3D;</h3><ul>
+<li><p>事务作用</p>
+<p>事务作用：保证一组对数据库的操作具有同一性：要么同时成功，要么同时失败。</p>
+<p><code>Spring</code>事务作用：轻松实现在<strong>业务层</strong>保障一系列的数据库操作同时成功或同时失败</p>
+<p><strong>事务要在<code>Service</code>控制</strong>：一个业务操作可能包含多组对数据库的操作，这些操作作为一个整体同时成功同时失败。</p>
+</li>
+<li><p>概念</p>
+<p><code>Spring</code>中使用<strong>声明式</strong>事务管理。</p>
+<p>所谓的声明式事务，就是通过配置的方式实现事务控制和控制细节的调整。</p>
+</li>
+<li><p>原理</p>
+<p><code>Spring</code>声明式事务是通过<code>Spring</code>的<code>AOP</code>实现的。</p>
+</li>
+</ul>
+<h3 id="6-2-需求和分析"><a href="#6-2-需求和分析" class="headerlink" title="6.2 需求和分析"></a>6.2 需求和分析</h3><ul>
+<li>需求：实现任意两个账户间转账操作</li>
+<li>需求微缩：A账户减钱，B账户加钱</li>
+<li>分析：<ol>
+<li>数据层提供基础操作，指定账户减钱（outMoney），指定账户加钱（inMoney）</li>
+<li>业务层提供转账操作（transfer），调用减钱与加钱的操作</li>
+<li>提供2个账号和操作金额执行转账操作</li>
+<li>基于Spring整合MyBatis环境搭建上述操作</li>
+</ol>
+</li>
+<li>结果分析：<ol>
+<li>程序正常执行时，账户金额A减B加，没有问题</li>
+<li>程序出现异常后，转账失败，但是异常之前操作成功，异常之后操作失败，整体业务失败</li>
+</ol>
+</li>
+</ul>
+<h3 id="x3D-x3D-6-3-代码实现-x3D-x3D"><a href="#x3D-x3D-6-3-代码实现-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;6.3 代码实现&#x3D;&#x3D;"></a>&#x3D;&#x3D;6.3 代码实现&#x3D;&#x3D;</h3><h5 id="6-3-0-环境准备"><a href="#6-3-0-环境准备" class="headerlink" title="6.3.0 环境准备"></a>6.3.0 环境准备</h5><blockquote>
+<p>Spring整合Mybatis相关代码(依赖、JdbcConfig、MybatisConfig、SpringConfig)省略。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">AccountDao</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Update(&quot;update ssm_spring.account set money = money + #&#123;money&#125; where name = #&#123;name&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">inMoney</span><span class="params">(<span class="meta">@Param(&quot;name&quot;)</span> String name, <span class="meta">@Param(&quot;money&quot;)</span> BigDecimal money)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Update(&quot;update ssm_spring.account set money = money - #&#123;money&#125; where name = #&#123;name&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">outMoney</span><span class="params">(<span class="meta">@Param(&quot;name&quot;)</span> String name, <span class="meta">@Param(&quot;money&quot;)</span> BigDecimal money)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">AccountService</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 转账操作</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> out 传出方</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> in 转入方</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> money 金额</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="comment">//配置当前接口方法具有事务</span></span><br><span class="line">    <span class="meta">@Transactional</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">transfer</span><span class="params">(String out, String in , BigDecimal money)</span> ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AccountServiceImpl</span> <span class="keyword">implements</span> <span class="title class_">AccountService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> AccountDao accountDao;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Transactional</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">transfer</span><span class="params">(String out, String in , BigDecimal money)</span> &#123;</span><br><span class="line">        accountDao.inMoney(in,money);</span><br><span class="line">        <span class="comment">// int i = 1/0;</span></span><br><span class="line">        accountDao.outMoney(out,money);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="6-3-1-在指定方法上开启事务"><a href="#6-3-1-在指定方法上开启事务" class="headerlink" title="6.3.1 在指定方法上开启事务"></a>6.3.1 在指定方法上开启事务</h5><p>在业务层方法<code>transfer</code>上添加<code>Spring</code>事务注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AccountServiceImpl</span> <span class="keyword">implements</span> <span class="title class_">AccountService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> AccountDao accountDao;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Transactional</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">transfer</span><span class="params">(String out, String in , BigDecimal money)</span> &#123;</span><br><span class="line">        accountDao.inMoney(in,money);</span><br><span class="line">        <span class="comment">// int i = 1/0;</span></span><br><span class="line">        accountDao.outMoney(out,money);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意事项</p>
+<ol>
+<li><p>注解可以标注在方法上、类上和接口上</p>
+</li>
+<li><p>标注在方法上，对应方法会开启事务；标注在类上，类中所有方法会开启事务；标注在接口上，接口的所有实现类中所有方法都会开启事务。</p>
+</li>
+<li><p>通常添加在业务层接口中而不会添加到业务层实现类中，降低耦合，统一处理</p>
+</li>
+</ol>
+<h5 id="6-3-2-装配事务管理器"><a href="#6-3-2-装配事务管理器" class="headerlink" title="6.3.2 装配事务管理器"></a>6.3.2 装配事务管理器</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//配置事务管理器，mybatis使用的是jdbc事务</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> PlatformTransactionManager <span class="title function_">transactionManager</span><span class="params">(DataSource dataSource)</span>&#123;</span><br><span class="line">    <span class="type">DataSourceTransactionManager</span> <span class="variable">dtm</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DataSourceTransactionManager</span>();</span><br><span class="line">    dtm.setDataSource(dataSource);</span><br><span class="line">    <span class="keyword">return</span> transactionManager;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意事项</p>
+<ol>
+<li>Spring定义了事务管理器的接口<code>PlatformTransactionManager</code>，定义了事务管理的通用操作</li>
+<li>不同的数据持久层技术针对该即接口进行了实现；</li>
+<li><code>Mybatis</code>和<code>Jdbc</code>都使用<code>Jdbc</code>的实现：<code>DataSourceTransactionManager</code>。</li>
+</ol>
+<h5 id="6-3-3-开启驱动管理"><a href="#6-3-3-开启驱动管理" class="headerlink" title="6.3.3 开启驱动管理"></a>6.3.3 开启驱动管理</h5><p>也可以称为开启注解式事务驱动</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @Configuration</span></span><br><span class="line"><span class="meta">@ComponentScan(&quot;com.itheima&quot;)</span></span><br><span class="line"><span class="meta">@PropertySource(&quot;classpath:jdbc.properties&quot;)</span></span><br><span class="line"><span class="meta">@Import(&#123;JdbcConfig.class,MybatisConfig.class&#125;)</span></span><br><span class="line"><span class="meta">@EnableTransactionManagement</span>  <span class="comment">//开启驱动管理 和 @Transactional成对出现</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SpringConfig</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="6-3-4运行测试类，查看结果"><a href="#6-3-4运行测试类，查看结果" class="headerlink" title="6.3.4运行测试类，查看结果"></a>6.3.4运行测试类，查看结果</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith(SpringJUnit4ClassRunner.class)</span></span><br><span class="line"><span class="meta">@ContextConfiguration(classes = SpringConfig.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AccountServiceTest</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> AccountService accountService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testTransfer</span><span class="params">()</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        accountService.transfer(<span class="string">&quot;Tom&quot;</span>,<span class="string">&quot;Jerry&quot;</span>,<span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="string">&quot;100&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="6-5-事务的属性"><a href="#6-5-事务的属性" class="headerlink" title="6.5 事务的属性"></a>6.5 事务的属性</h3><h4 id="6-5-1-相关属性及作用"><a href="#6-5-1-相关属性及作用" class="headerlink" title="6.5.1 相关属性及作用"></a>6.5.1 相关属性及作用</h4><p><img src="/03-Spring-day03-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B061.assets/image-20210802151553053-16564978160526.png" class="lazyload placeholder" data-srcset="/03-Spring-day03-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B061.assets/image-20210802151553053-16564978160526.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="image-20210802151553053"></p>
+<ul>
+<li><p>默认哪些异常会造成事务回滚</p>
+<p>对于<code>RuntimeException</code>类型异常或者<code>Error</code>错误，<code>Spring</code>事务能够进行回滚操作。</p>
+<p>但是对于编译器异常，<code>Spring</code>事务是不进行回滚的，所以需要使用<code>rollbackFor</code>来设置要回滚的异常。</p>
+</li>
+<li><p>演示代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AccountServiceImpl</span> <span class="keyword">implements</span> <span class="title class_">AccountService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> AccountDao accountDao;</span><br><span class="line">    <span class="comment">// rollbackFor属性指定当对应的异常发生时，就回滚</span></span><br><span class="line">    <span class="meta">@Transactional(rollbackFor = Exception.class)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">transfer</span><span class="params">(String out, String in, BigDecimal money)</span> <span class="keyword">throws</span> FileNotFoundException &#123;</span><br><span class="line">        accountDao.inMoney(in, money);</span><br><span class="line">        <span class="comment">// int i = 1/0;</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="number">1</span> == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">FileNotFoundException</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        accountDao.outMoney(out, money);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>其他代码不变，略</p>
+</li>
+</ul>
+<h4 id="6-5-2-传播行为"><a href="#6-5-2-传播行为" class="headerlink" title="6.5.2 传播行为"></a>6.5.2 传播行为</h4><p>传播行为研究的是：业务层A方法调用其他方法B（C、D……）时，A、B（C、D……）这些方法执行期间如何控制事务的问题：被调用的方法B（C、D……）如果看待处理调用方法A事务的问题。</p>
+<p>使用结婚彩礼的来理解传播行为</p>
+<p>方法的调用者A  –  男方  -  事务管理员</p>
+<p>被调用的方法B  – 女方  – 事务协调员</p>
+<p>事务 - 彩礼</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MethodA&#123;&#125;&#123;  <span class="comment">// 事务管理员，男方</span></span><br><span class="line">    MethodB(实参)  <span class="comment">// 事务协调员，女方</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="6-5-3-传播行为分类"><a href="#6-5-3-传播行为分类" class="headerlink" title="6.5.3 传播行为分类"></a>6.5.3 传播行为分类</h4><p><img src="/03-Spring-day03-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B061.assets/image-20210802153014296-16564978160527.png" class="lazyload placeholder" data-srcset="/03-Spring-day03-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B061.assets/image-20210802153014296-16564978160527.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="image-20210802153014296"></p>
+<h4 id="6-5-4-工作中用法"><a href="#6-5-4-工作中用法" class="headerlink" title="6.5.4 工作中用法"></a>6.5.4 工作中用法</h4><p><code>REQUIRED</code> 这个是默认值</p>
+<p><code>REQUIRES_NEW</code> 应用场景，eg：数据库中记录操作日志、取钱时候打印小票方法可以配置该传播行为等</p>
+<h3 id="x3D-x3D-6-6-传播行为案例-x3D-x3D"><a href="#x3D-x3D-6-6-传播行为案例-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;6.6 传播行为案例&#x3D;&#x3D;"></a>&#x3D;&#x3D;6.6 传播行为案例&#x3D;&#x3D;</h3><h4 id="需求和分析"><a href="#需求和分析" class="headerlink" title="需求和分析"></a>需求和分析</h4><ul>
+<li>需求：实现任意两个账户间转账操作，并对每次转账操作在数据库进行留痕</li>
+<li>需求微缩：A账户减钱，B账户加钱，数据库记录日志</li>
+<li>分析：<br>①：基于转账操作案例添加日志模块，实现数据库中记录日志<br>②：业务层转账操作（transfer），调用减钱、加钱与记录日志功能</li>
+<li>实现效果预期：<br>无论转账操作是否成功，均进行转账操作的日志留痕</li>
+<li>存在的问题：<br>日志的记录与转账操作隶属同一个事务，同成功同失败</li>
+<li>实现效果预期改进：<br>无论转账操作是否成功，日志必须保留</li>
+<li>事务传播行为：事务协调员对事务管理员所携带事务的处理态度</li>
+</ul>
+<p><img src="/03-Spring-day03-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B061.assets/image-20210802153216460.png" class="lazyload placeholder" data-srcset="/03-Spring-day03-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B061.assets/image-20210802153216460.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="image-20210802153216460"></p>
+<h4 id="6-6-0-环境整备"><a href="#6-6-0-环境整备" class="headerlink" title="6.6.0 环境整备"></a>6.6.0 环境整备</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">USE spring_db;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> tbl_log(</span><br><span class="line">	id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">	info <span class="type">VARCHAR</span>(<span class="number">255</span>),</span><br><span class="line">	createDate <span class="type">DATE</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">LogService</span> &#123;</span><br><span class="line">    <span class="comment">//propagation设置事务属性：传播行为设置为当前操作需要新事务</span></span><br><span class="line">    <span class="meta">@Transactional</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">log</span><span class="params">(String out, String in, Double money)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LogServiceImpl</span> <span class="keyword">implements</span> <span class="title class_">LogService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> LogDao logDao;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">log</span><span class="params">(String out,String in,Double money )</span> &#123;</span><br><span class="line">        logDao.log(<span class="string">&quot;转账操作由&quot;</span>+out+<span class="string">&quot;到&quot;</span>+in+<span class="string">&quot;,金额：&quot;</span>+money);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">LogDao</span> &#123;</span><br><span class="line">    <span class="meta">@Insert(&quot;insert into tbl_log (info,createDate) values(#&#123;info&#125;,now())&quot;)</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">log</span><span class="params">(String info)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="6-6-1-在AccountServiceImpl中调用logService中添加日志的方法"><a href="#6-6-1-在AccountServiceImpl中调用logService中添加日志的方法" class="headerlink" title="6.6.1 在AccountServiceImpl中调用logService中添加日志的方法"></a>6.6.1 在AccountServiceImpl中调用logService中添加日志的方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AccountServiceImpl</span> <span class="keyword">implements</span> <span class="title class_">AccountService</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> AccountDao accountDao;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> LogService logService;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">transfer</span><span class="params">(String out,String in ,Double money)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            accountDao.outMoney(out,money);</span><br><span class="line">            <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>/<span class="number">0</span>;</span><br><span class="line">            accountDao.inMoney(in,money);</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            logService.log(out,in,money);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="6-6-2-在LogService的log-方法上设置事务的传播行为"><a href="#6-6-2-在LogService的log-方法上设置事务的传播行为" class="headerlink" title="6.6.2 在LogService的log()方法上设置事务的传播行为"></a>6.6.2 在LogService的log()方法上设置事务的传播行为</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">LogService</span> &#123;</span><br><span class="line">    <span class="comment">//propagation设置事务属性：传播行为设置为当前操作需要新事务</span></span><br><span class="line">    <span class="meta">@Transactional(propagation = Propagation.REQUIRES_NEW)</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">log</span><span class="params">(String out, String in, Double money)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="6-6-3-运行测试类，查看结果"><a href="#6-6-3-运行测试类，查看结果" class="headerlink" title="6.6.3 运行测试类，查看结果"></a>6.6.3 运行测试类，查看结果</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith(SpringJUnit4ClassRunner.class)</span></span><br><span class="line"><span class="meta">@ContextConfiguration(classes = SpringConfig.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AccountServiceTest</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> AccountService accountService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testTransfer</span><span class="params">()</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        accountService.transfer(<span class="string">&quot;Tom&quot;</span>,<span class="string">&quot;Jerry&quot;</span>,<span class="number">50D</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<ul>
+<li>转账失败</li>
+<li>转账记录成功添加</li>
+</ul>
+<p>符合需求预期。</p>
+
+      </div>
+      <div class="post-tags-categories">
+        
+      </div>
+      
+        <div class="copyright">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+    <strong>author:  </strong>张小凯</a>
+    </li>
+    <li class="post-copyright-link">
+    <strong>link:  </strong>
+    <a href="/2022/08/24/03-Spring-day03-课堂笔记61/" target="_blank" title="">http://example.com/2022/08/24/03-Spring-day03-课堂笔记61/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>Copyright notice:   </strong>
+      All articles on this website, unless otherwise stated, adopt <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+      reprint policy. If reproduced, please indicate source!
+    </li>
+  </ul>
+<div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      <!-- 文章详情页的上一页和下一页 -->
+<div class="post-nav">
+
+
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="/medias/7.jpg" class="lazyload placeholder" data-srcset="/medias/7.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+    </div>
+    <a href="/2022/08/24/hello-world/" class="post-nav-link">
+      <div class="title">
+        Next: <i class="fas fa-angle-right"></i>
+        <div class="title-text">Hello World</div>
+      </div>
+      <!-- <div class="content">
+        Welcome to Hexo! This is your very first post. Check documen
+      </div> -->
+    </a>
+  </div>
+
+</div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+      <div id="appDonate" class="post-donate">
+  <div id="donate_board" class="donate_bar center" ref="donate">
+    <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏" @click="showDialogDrawer()"></a>
+  </div>
+  <transition name="fade">
+    <div 
+      class="donate-box-mask"
+      v-cloak 
+      v-show="visible"
+      @click="cancelDialogDrawer()"
+    >
+    </div>
+  </transition>
+  <transition name="bounce">
+    <div class="donate-box" v-cloak v-show="visible">
+      <div class="donate-box_close">
+        <i class="fas fa-times" aria-hidden="true" @click="cancelDialogDrawer" pointer></i>
+      </div>
+      <div class="donate-box_title">
+        <h4>
+          你的赏识是我前进的动力
+        </h4>
+      </div>
+      <div class="donate-box_tab">
+        <div class="Alipay" pointer :class="{'active': tabActive === 'Alipay'}" @click="changeTabActive('Alipay')">
+          支付宝
+        </div>
+        <div class="WeChatpay" pointer :class="{'active': tabActive === 'WeChatpay'}" @click="changeTabActive('WeChatpay')">
+          微信
+        </div>
+      </div>
+      <div class="donate-box_img">
+        <div class="AlipayImg" v-show="tabActive === 'Alipay'">
+          <img src="/medias/1.jpg" class="lazyload placeholder" data-srcset="/medias/1.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="支付宝打赏" />
+        </div> 
+        <div class="WeChatpayImg" v-show="tabActive === 'WeChatpay'">
+          <img src="/medias/2.jpg" class="lazyload placeholder" data-srcset="/medias/2.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="微信打赏" />
+        </div>
+      </div>
+    </div>
+  </transition>
+</div>
+
+<script>
+  var body = document.body || document.documentElement || window;
+  var vm = new Vue({
+    el: '#appDonate',
+    data: {
+      visible: false,
+      tabActive: 'Alipay',
+      top: 0,
+    },
+    computed: {
+    },
+    mounted() {
+    },
+    methods: {
+      showDialogDrawer() {
+        this.visible = true;
+        // 防止页面滚动，只能让弹框滚动
+        // function getScroll() {
+        //   return {
+        //     left: window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0,
+        //     top: window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+        //   };
+        // }
+        this.top = $(document).scrollTop() // or getScroll().top
+        // console.log('aa', $('.main-content'));
+        body.style.cssText = 'overflow: hidden;';
+      },
+      cancelDialogDrawer() {
+        this.visible = false;
+        body.removeAttribute('style');
+        $(document).scrollTop(this.top)
+      },
+      changeTabActive(name) {
+        this.tabActive = name;
+      }
+    },
+    created() {}
+  })
+</script>
+    
+
+    <!-- 分享 -->
+    
+      <!-- https://github.com/overtrue/share.js -->
+<!-- 文章详情页的分享 -->
+<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+
+<script src="/js/shareJs/social-share.min.js"></script>
+</script>
+
+<style>
+  .social-share {
+    margin: 20px 0;
+  }
+</style>
+
+
+    
+    
+    <!-- 评论 -->
+    <!-- 评论 -->
+
+  <div id="myComment">
+    
+      <div id="gitment-container"></div>
+
+    
+  </div>
+
+<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
+
+
+  </div>
+
+  <!-- 目录 -->
+  <!-- 文章详情页右侧目录 -->
+
+  <div class="toc-aside">
+    <div class="toc-main">
+      <div class="toc-aside-title">
+        <i class="fas fa-list-ul" aria-hidden="true"></i><span>catalog</span>
+        
+          <div class="toc-open-close">catalog</div>
+        
+      </div>
+      <div class="toc-content">
+        <div class="toc"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 手机端目录按钮 -->
+  <div id="toc-mobile-btn">
+    <i class="fas fa-list-ul" aria-hidden="true"></i>
+  </div>
+
+
+<script>
+  function closeToc(init) {
+    $(".toc-aside").css({'width': 0, 'padding': 0, 'transition': init ?  'noe' : 'width 0.3s' });
+    $(".toc-content").css({'width': 0});
+    $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
+    $(".main-content").css({'width': '75%', 'margin-left': 'auto', 'margin-right': 'auto',});
+  };
+  function openToc() {
+    $(".main-content").css({'width': '65%', 'margin-right': '10px', 'margin-left': 'calc(35% - 350px)'});
+    $(".toc-aside").css({'width': '300px', 'padding': '0 10px', 'transition': 'width 0.3s'});
+    $(".toc-content").css({'width': '300px'});
+    $(".toc-aside-title span, .toc-aside-title i").css({'display': 'inline-block'});
+  }
+  function openBtnClickFn () {
+    let openOrCloseBtn = $('.toc-aside .toc-aside-title .toc-open-close');
+    let open = eval('' || 'true');
+    openOrCloseBtn.click(function() {
+      if (open) {
+        closeToc();
+        open = false;
+      } else {
+        openToc();
+        open = true;
+      }
+    });
+  };
+  openBtnClickFn();
+  initCloseTocWidth(true);
+
+  function initCloseTocWidth(init) {
+    if (window.innerWidth >= 992) {
+      let isClose = false;
+      isClose && closeToc(init)
+    }
+  }
+
+  document.addEventListener('pjax:complete', function () {
+    $(".toc-aside").css({'transition': 'no'});
+  })
+  document.addEventListener('pjax:complete', function () {
+    openBtnClickFn();
+  })
+  
+</script>
+
+  <!-- 图片放大 Wrap images with fancybox support -->
+  <script src="/js/wrapImage.js"></script>
+</div>
+
+<!-- 文章详情页背景图 -->
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
+	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
+	<transition-group tag="ul" :name="names">
+		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+			<img :src="image" class="bg-swiper-img no-lazy">
+		</li>
+	</transition-group>
+</div>
+<script>
+	var vm = new Vue({
+		el: '#appBgSwiper',
+		data: {
+			names: '' || 'fade' || 'fade', // translate-fade fade
+			mark: 0,
+			img: [],
+			bgColor: '',
+			time: null
+		},
+		methods: {   //添加方法
+			change(i, m) {
+				if (i > m) {
+					// this.names = 'fade';
+				} else if (i < m) {
+					// this.names = 'fade';
+				} else {
+					return;
+				}
+				this.mark = i;
+			},
+			prev() {
+				// this.names = 'fade';
+				this.mark--;
+				if (this.mark === -1) {
+					this.mark = 3;
+					return
+				}
+			},
+			next() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			autoPlay() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			play() {
+				let bgImgDelay = '' || '180000'
+				let delay = parseInt(bgImgDelay) || 180000;
+				this.time = setInterval(this.autoPlay, delay);
+			},
+			enter() {
+				clearInterval(this.time);
+			},
+			leave() {
+				this.play();
+			}
+		},
+		created() {
+			this.play()
+		},
+		beforeDestroy() {
+			clearInterval(this.time);
+		},
+		mounted() {
+			let prop = '' || '';
+			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
+			if (isImg) {
+				let img = prop.split(',');
+				let configRoot = '/'
+				let arrImg = [];
+				img.forEach(el => {
+					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+					var objExp = new RegExp(Expression);
+
+					if (objExp.test(el)) {
+						// http or https
+						arrImg.push(el);
+					} else {
+						// 非http or https开头
+						// 本地文件
+						let firstStr = el.charAt(0);
+						if (firstStr == '/') {
+							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+						}
+						el = configRoot + el;
+						arrImg.push(el);
+					}
+				})
+				this.img = arrImg;
+			} else {
+				this.bgColor = prop;
+			}
+		}
+	})
+</script>
+
+<style>
+	.bg-swiper-box {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.bg-swiper-img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+
+
+
+
+  <script>
+  function loadMermaid() {
+    if (document.getElementsByClassName('mermaid').length) {
+      if (window.mermaidJsLoad) mermaid.init()
+      else {
+        loadScript('https://unpkg.com/mermaid/dist/mermaid.min.js').then(() => {
+          window.mermaidJsLoad = true
+          mermaid.initialize({
+            theme: 'default',
+          })
+          if ('true') {
+            mermaid.init();
+          }
+        })
+      }
+    }
+  };
+  document.addEventListener("DOMContentLoaded", function () {
+    loadMermaid();
+  })
+
+  document.addEventListener('pjax:complete', function () {
+    loadMermaid();
+  })
+  
+</script>
+
+
+      </main>
+    </div>
+
+    <!-- 页脚 -->
+    
+  
+  
+    <!-- 底部鱼儿跳动效果，依赖于jquery-->
+<div id="j-fish-skip" style=" position: relative;height: 153px;width: auto;"></div>
+<script>
+  var RENDERER = {
+    POINT_INTERVAL: 5,
+    FISH_COUNT: 3,
+    MAX_INTERVAL_COUNT: 50,
+    INIT_HEIGHT_RATE: .5,
+    THRESHOLD: 50,
+    FISH_COLOR: '',
+    init: function () {
+      this.setFishColor(); this.setParameters(), this.reconstructMethods(), this.setup(), this.bindEvent(), this.render()
+    },
+    setFishColor: function () {
+      let isDark = JSON.parse(localStorage.getItem('dark')) || JSON.parse('false');
+      if (isDark) {
+        this.FISH_COLOR = '#222'; // 暗黑色，有时间把这整成一个变量
+      } else {
+        this.FISH_COLOR = '' || '#42b983';
+      }
+    },
+    setParameters: function () {
+      this.$window = $(window), this.$container = $("#j-fish-skip"), this.$canvas = $("<canvas />"), this.context = this.$canvas.appendTo(this.$container).get(0).getContext("2d"), this.points = [], this.fishes = [], this.watchIds = []
+    },
+    createSurfacePoints: function () {
+      var t = Math.round(this.width / this.POINT_INTERVAL);
+      this.pointInterval = this.width / (t - 1), this.points.push(new SURFACE_POINT(this, 0));
+      for (var i = 1; i < t; i++) {
+        var e = new SURFACE_POINT(this, i * this.pointInterval),
+          h = this.points[i - 1];
+        e.setPreviousPoint(h), h.setNextPoint(e), this.points.push(e)
+      }
+    },
+    reconstructMethods: function () {
+      this.watchWindowSize = this.watchWindowSize.bind(this), this.jdugeToStopResize = this.jdugeToStopResize.bind(this), this.startEpicenter = this.startEpicenter.bind(this), this.moveEpicenter = this.moveEpicenter.bind(this), this.reverseVertical = this.reverseVertical.bind(this), this.render = this.render.bind(this)
+    },
+    setup: function () {
+      this.points.length = 0, this.fishes.length = 0, this.watchIds.length = 0, this.intervalCount = this.MAX_INTERVAL_COUNT, this.width = this.$container.width(), this.height = this.$container.height(), this.fishCount = this.FISH_COUNT * this.width / 500 * this.height / 500, this.$canvas.attr({
+        width: this.width,
+        height: this.height
+      }), this.reverse = !1, this.fishes.push(new FISH(this)), this.createSurfacePoints()
+    },
+    watchWindowSize: function () {
+      this.clearTimer(), this.tmpWidth = this.$window.width(), this.tmpHeight = this.$window.height(), this.watchIds.push(setTimeout(this.jdugeToStopResize, this.WATCH_INTERVAL))
+    },
+    clearTimer: function () {
+      for (; this.watchIds.length > 0;) clearTimeout(this.watchIds.pop())
+    },
+    jdugeToStopResize: function () {
+      var t = this.$window.width(),
+        i = this.$window.height(),
+        e = t == this.tmpWidth && i == this.tmpHeight;
+      this.tmpWidth = t, this.tmpHeight = i, e && this.setup()
+    },
+    bindEvent: function () {
+      this.$window.on("resize", this.watchWindowSize), this.$container.on("mouseenter", this.startEpicenter), this.$container.on("mousemove", this.moveEpicenter)
+    },
+    getAxis: function (t) {
+      var i = this.$container.offset();
+      return {
+        x: t.clientX - i.left + this.$window.scrollLeft(),
+        y: t.clientY - i.top + this.$window.scrollTop()
+      }
+    },
+    startEpicenter: function (t) {
+      this.axis = this.getAxis(t)
+    },
+    moveEpicenter: function (t) {
+      var i = this.getAxis(t);
+      this.axis || (this.axis = i), this.generateEpicenter(i.x, i.y, i.y - this.axis.y), this.axis = i
+    },
+    generateEpicenter: function (t, i, e) {
+      if (!(i < this.height / 2 - this.THRESHOLD || i > this.height / 2 + this.THRESHOLD)) {
+        var h = Math.round(t / this.pointInterval);
+        h < 0 || h >= this.points.length || this.points[h].interfere(i, e)
+      }
+    },
+    reverseVertical: function () {
+      this.reverse = !this.reverse;
+      for (var t = 0, i = this.fishes.length; t < i; t++) this.fishes[t].reverseVertical()
+    },
+    controlStatus: function () {
+      for (var t = 0, i = this.points.length; t < i; t++) this.points[t].updateSelf();
+      for (t = 0, i = this.points.length; t < i; t++) this.points[t].updateNeighbors();
+      this.fishes.length < this.fishCount && 0 == --this.intervalCount && (this.intervalCount = this.MAX_INTERVAL_COUNT, this.fishes.push(new FISH(this)))
+    },
+    render: function () {
+      requestAnimationFrame(this.render), this.controlStatus(), this.context.clearRect(0, 0, this.width, this.height), this.context.fillStyle = this.FISH_COLOR;
+      for (var t = 0, i = this.fishes.length; t < i; t++) this.fishes[t].render(this.context);
+      this.context.save(), this.context.globalCompositeOperation = "xor", this.context.beginPath(), this.context.moveTo(0, this.reverse ? 0 : this.height);
+      for (t = 0, i = this.points.length; t < i; t++) this.points[t].render(this.context);
+      this.context.lineTo(this.width, this.reverse ? 0 : this.height), this.context.closePath(), this.context.fill(), this.context.restore()
+    }
+  },
+  SURFACE_POINT = function (t, i) {
+    this.renderer = t, this.x = i, this.init()
+  };
+  SURFACE_POINT.prototype = {
+    SPRING_CONSTANT: .03,
+    SPRING_FRICTION: .9,
+    WAVE_SPREAD: .3,
+    ACCELARATION_RATE: .01,
+    init: function () {
+      this.initHeight = this.renderer.height * this.renderer.INIT_HEIGHT_RATE, this.height = this.initHeight, this.fy = 0, this.force = {
+        previous: 0,
+        next: 0
+      }
+    },
+    setPreviousPoint: function (t) {
+      this.previous = t
+    },
+    setNextPoint: function (t) {
+      this.next = t
+    },
+    interfere: function (t, i) {
+      this.fy = this.renderer.height * this.ACCELARATION_RATE * (this.renderer.height - this.height - t >= 0 ? -1 : 1) * Math.abs(i)
+    },
+    updateSelf: function () {
+      this.fy += this.SPRING_CONSTANT * (this.initHeight - this.height), this.fy *= this.SPRING_FRICTION, this.height += this.fy
+    },
+    updateNeighbors: function () {
+      this.previous && (this.force.previous = this.WAVE_SPREAD * (this.height - this.previous.height)), this.next && (this.force.next = this.WAVE_SPREAD * (this.height - this.next.height))
+    },
+    render: function (t) {
+      this.previous && (this.previous.height += this.force.previous, this.previous.fy += this.force.previous), this.next && (this.next.height += this.force.next, this.next.fy += this.force.next), t.lineTo(this.x, this.renderer.height - this.height)
+    }
+  };
+  var FISH = function (t) {
+    this.renderer = t, this.init()
+  };
+  FISH.prototype = {
+    GRAVITY: .4,
+    init: function () {
+      this.direction = Math.random() < .5, this.x = this.direction ? this.renderer.width + this.renderer.THRESHOLD : -this.renderer.THRESHOLD, this.previousY = this.y, this.vx = this.getRandomValue(4, 10) * (this.direction ? -1 : 1), this.renderer.reverse ? (this.y = this.getRandomValue(1 * this.renderer.height / 10, 4 * this.renderer.height / 10), this.vy = this.getRandomValue(2, 5), this.ay = this.getRandomValue(.05, .2)) : (this.y = this.getRandomValue(6 * this.renderer.height / 10, 9 * this.renderer.height / 10), this.vy = this.getRandomValue(-5, -2), this.ay = this.getRandomValue(-.2, -.05)), this.isOut = !1, this.theta = 0, this.phi = 0
+    },
+    getRandomValue: function (t, i) {
+      return t + (i - t) * Math.random()
+    },
+    reverseVertical: function () {
+      this.isOut = !this.isOut, this.ay *= -1
+    },
+    controlStatus: function (t) {
+      this.previousY = this.y, this.x += this.vx, this.y += this.vy, this.vy += this.ay, this.renderer.reverse ? this.y > this.renderer.height * this.renderer.INIT_HEIGHT_RATE ? (this.vy -= this.GRAVITY, this.isOut = !0) : (this.isOut && (this.ay = this.getRandomValue(.05, .2)), this.isOut = !1) : this.y < this.renderer.height * this.renderer.INIT_HEIGHT_RATE ? (this.vy += this.GRAVITY, this.isOut = !0) : (this.isOut && (this.ay = this.getRandomValue(-.2, -.05)), this.isOut = !1), this.isOut || (this.theta += Math.PI / 20, this.theta %= 2 * Math.PI, this.phi += Math.PI / 30, this.phi %= 2 * Math.PI), this.renderer.generateEpicenter(this.x + (this.direction ? -1 : 1) * this.renderer.THRESHOLD, this.y, this.y - this.previousY), (this.vx > 0 && this.x > this.renderer.width + this.renderer.THRESHOLD || this.vx < 0 && this.x < -this.renderer.THRESHOLD) && this.init()
+    },
+    render: function (t) {
+      t.save(), t.translate(this.x, this.y), t.rotate(Math.PI + Math.atan2(this.vy, this.vx)), t.scale(1, this.direction ? 1 : -1), t.beginPath(), t.moveTo(-30, 0), t.bezierCurveTo(-20, 15, 15, 10, 40, 0), t.bezierCurveTo(15, -10, -20, -15, -30, 0), t.fill(), t.save(), t.translate(40, 0), t.scale(.9 + .2 * Math.sin(this.theta), 1), t.beginPath(), t.moveTo(0, 0), t.quadraticCurveTo(5, 10, 20, 8), t.quadraticCurveTo(12, 5, 10, 0), t.quadraticCurveTo(12, -5, 20, -8), t.quadraticCurveTo(5, -10, 0, 0), t.fill(), t.restore(), t.save(), t.translate(-3, 0), t.rotate((Math.PI / 3 + Math.PI / 10 * Math.sin(this.phi)) * (this.renderer.reverse ? -1 : 1)), t.beginPath(), this.renderer.reverse ? (t.moveTo(5, 0), t.bezierCurveTo(10, 10, 10, 30, 0, 40), t.bezierCurveTo(-12, 25, -8, 10, 0, 0)) : (t.moveTo(-5, 0), t.bezierCurveTo(-10, -10, -10, -30, 0, -40), t.bezierCurveTo(12, -25, 8, -10, 0, 0)), t.closePath(), t.fill(), t.restore(), t.restore(), this.controlStatus(t)
+    }
+  }, $(function () {
+    RENDERER.init()
+    $('.dark').click(function () {
+      setTimeout(() => {
+        RENDERER.setFishColor();
+        RENDERER.context.fill();
+      });
+    })
+  });
+</script>
+  
+  <div class="footer bg-color">
+    <div class="footer-main">
+      
+        
+          <div class="link">
+            
+          </div>
+        
+      
+        
+          <div class="footer-copyright">
+            <p>Copyright © 2019 - 2020 <a target="_blank" rel="noopener" href="https://github.com/yuang01">yuang01</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> </p>
+
+          </div>
+        
+      
+        
+          
+            <!-- 不蒜子统计 -->
+            <!-- 不蒜子统计 -->
+<span id="busuanzi_container_site_pv">
+      <i class="fas fa-eye" aria-hidden="true"></i>Total visits：<span id="busuanzi_value_site_pv"></span> times
+</span>
+<span class="post-meta-divider">|</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+      <i class="fas fa-users" aria-hidden="true"></i>Number of visitors：<span id="busuanzi_value_site_uv"></span> people
+</span>
+
+          
+        
+      
+        
+          <div class="footer-custom">
+            
+          </div>
+        
+      
+    </div>
+  </div>
+
+
+
+    <!-- 渲染暗黑按钮 -->
+    
+      <div class="dark">
+  <div class="dark-content">
+    <i class="fas fa-moon" aria-hidden="true"></i>
+    <!-- <span>关灯</span> -->
+  </div>
+  
+</div>
+
+<script>
+  $(function() {
+    let isDark = JSON.parse(localStorage.getItem('dark'))  || JSON.parse('false');
+    if (isDark) {
+      $(".dark-content").replaceWith(
+          `
+          <div class='dark-content'>
+            <i class="fas fa-lightbulb" aria-hidden="true"></i>
+          </div>
+          `
+        );
+    }
+    $('.dark').click(function() {
+      if ($(document.body).is('.darkModel')) {
+        $(document.body).removeClass('darkModel');
+        localStorage.setItem('dark', false);
+        $(".dark-content").replaceWith(
+          `
+          <div class='dark-content'>
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </div>
+          `
+        );
+      } else {
+        $(document.body).addClass('darkModel');
+        localStorage.setItem('dark', true);
+        $(".dark-content").replaceWith(
+          `
+          <div class='dark-content'>
+            <i class="fas fa-lightbulb" aria-hidden="true"></i>
+          </div>
+          `
+        );
+      }
+    })
+  })
+</script>
+    
+    <!-- 渲染回到顶部按钮 -->
+    
+      <div class="goTop top-btn-color" pointer>
+  <i class="fas fa-arrow-up" aria-hidden="true"></i>
+</div>
+<script src="/js/goTop.js"></script>
+
+    
+    <!-- 渲染左下角音乐播放器 -->
+    
+      <link rel="stylesheet" href="/js/aplayer/APlayer@1.10.1.min.css">
+<style>
+.aplayer .aplayer-lrc p {
+  
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px !important;
+}
+
+.aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  font-size: 15px;
+  color: #42b983;
+}
+
+
+.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+  left: -66px !important;
+}
+
+.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+  left: 0px !important;
+}
+
+
+</style>
+<meting-js  
+  class=""
+  server="tencent"
+  type="playlist"
+  id="8062553743"
+  fixed='true'
+  autoplay='false'
+  theme='#42b983'
+  loop='all'
+  order='random'
+  preload='auto'
+  volume='0.7'
+  list-folded='true'
+>
+</meting-js>
+
+<!-- <style>
+  #aplayer {
+    position: fixed;
+    left: 0;
+    bottom: 300px;
+  }
+</style> -->
+<script src="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js"></script>
+<script src="https://unpkg.com/meting@2/dist/Meting.min.js"></script>
+    
+
+    <!-- 图片放大 -->
+    
+      <script src="/js/fancybox/jquery.fancybox.min.js"></script>
+    
+
+    <!-- 百度解析 -->
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <!-- 背景彩带 -->
+    
+      <script type="text/javascript" size="100" alpha='0.4' zIndex="-1" src="/js/ribbon.min.js"></script>
+    
+
+    <script src="/js/utils/index.js"></script>
+    <script src="/js/app.js"></script>
+    
+    <!-- 文章目录所需js -->
+<link href="/js/tocbot/tocbot.css" rel="stylesheet">
+<script src="/js/tocbot/tocbot.min.js"></script>
+
+<script>
+  var headerEl = 'h2, h3, h4',  //headers 
+    content = '.post-detail',//文章容器
+    idArr = {};  //标题数组以确定是否增加索引id
+  //add #id
+  var option = {
+    // Where to render the table of contents.
+    tocSelector: '.toc',
+    // Where to grab the headings to build the table of contents.
+    contentSelector: content,
+    // Which headings to grab inside of the contentSelector element.
+    headingSelector: headerEl,
+    scrollSmooth: true,
+    scrollSmoothOffset: -80,
+    headingsOffset: -($(window).height() * 0.4 - 45),
+    positionFixedSelector: '.toc-main',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    activeLinkClass: 'is-active-link',
+    // onClick: function (e) {},
+  }
+  if ($('.toc').length > 0) {
+
+    $(content).children(headerEl).each(function () {
+      //去除空格以及多余标点
+      var headerId = $(this).text().replace(/[\s|\~|`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\_|\+|\=|\||\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?|\：|\，|\。]/g, '');
+
+      headerId = headerId.toLowerCase();
+      if (idArr[headerId]) {
+        //id已经存在
+        $(this).attr('id', headerId + '-' + idArr[headerId]);
+        idArr[headerId]++;
+      }
+      else {
+        //id未存在
+        idArr[headerId] = 1;
+        $(this).attr('id', headerId);
+      }
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      tocbot.init(option);
+      mobileTocClick();
+    });
+
+  }
+
+  window.tocScrollFn = function () {
+    return bamboo.throttle(function () {
+      findHeadPosition();
+    }, 100)()
+  }
+  window.addEventListener('scroll', tocScrollFn);
+
+  const findHeadPosition = function (top) {
+    if ($('.toc-list').length <= 0) {
+      return false;
+    }
+    setTimeout(() => {  // or DOMContentLoaded 
+      autoScrollToc();
+    }, 0);
+  }
+
+  const autoScrollToc = function () {
+    const $activeItem = document.querySelector('.is-active-link');
+    const $cardToc = document.querySelector('.toc-content');
+    const activePosition = $activeItem.getBoundingClientRect().top
+    const sidebarScrollTop = $cardToc.scrollTop
+    if (activePosition > (document.documentElement.clientHeight - 100)) {
+      $cardToc.scrollTop = sidebarScrollTop + 150
+    }
+    if (activePosition < 100) {
+      $cardToc.scrollTop = sidebarScrollTop - 150
+    }
+  }
+
+  document.addEventListener('pjax:send', function () {
+    if ($('.toc').length) {
+      tocbot.destroy();
+    }
+  });
+
+  document.addEventListener('pjax:complete', function () {
+    if ($('.toc').length) {
+      tocbot.init(option);
+      mobileTocClick();
+    }
+  });
+  
+  // 手机端toc按钮点击出现目录
+  const mobileTocClick = function () {
+    const $cardTocLayout = document.getElementsByClassName('toc-aside')[0];
+    const $cardToc = $cardTocLayout.getElementsByClassName('toc-content')[0];
+    let right = '45px';
+    if (window.innerWidth >= 551 && window.innerWidth <= 992) {
+      right = '100px'
+    }
+    const mobileToc = {
+      open: () => {
+        $cardTocLayout.style.cssText = 'animation: toc-open .3s; opacity: 1; right: ' + right
+      },
+
+      close: () => {
+        $cardTocLayout.style.animation = 'toc-close .2s'
+        setTimeout(() => {
+          $cardTocLayout.style.cssText = "opacity:''; animation: ''; right: ''"
+        }, 100)
+      }
+    }
+    document.getElementById('toc-mobile-btn').addEventListener('click', () => {
+      if (window.getComputedStyle($cardTocLayout).getPropertyValue('opacity') === '0') mobileToc.open()
+      else mobileToc.close()
+    })
+
+    $cardToc.addEventListener('click', (e) => {
+      if (window.innerWidth < 992) { // 小于992px的时候
+        mobileToc.close()
+      }
+    })
+  }
+</script>
+
+<style>
+  .is-position-fixed {
+    position: sticky !important;
+    top: 74px;
+  }
+
+  .toc-main ul {
+    counter-reset: show-list;
+  }
+
+  .toc-main ul li::before {
+    content: counter(item)".";
+    display: block;
+    position: absolute;
+    left: 12px;
+    top: 0;
+  }
+</style> 
+
+<!-- 设置导航背景 -->
+<script>
+  let setHeaderClass = () => {
+    const headerMenuTransparent = true;
+    if (!headerMenuTransparent) { return; }
+    const nav = $('#navHeader');
+    const navTop = nav.outerHeight();
+    const winTop = $(window).scrollTop();
+    if(winTop > navTop) {
+      nav.addClass('header-bg-color');
+    }
+    else {
+      nav.removeClass('header-bg-color');
+    }
+  };
+
+  let scrollCollect = () => {
+    return bamboo.throttle(function (e) {
+      setHeaderClass();
+    }, 200)()
+  }
+
+  let initHeaderBg = () => {
+    setHeaderClass();
+  }
+
+  setHeaderClass();
+  window.addEventListener('scroll', scrollCollect);
+
+  document.addEventListener('pjax:send', function () {
+    window.removeEventListener('scroll', scrollCollect)
+  })
+  document.addEventListener('pjax:complete', function () {
+    window.addEventListener('scroll', scrollCollect);
+    setHeaderClass();
+  })
+</script> 
+
+<!-- 渲染issues标签里的内容 -->
+<script>
+  function loadIssuesJS() {
+    if ($(".post-detail").find(".issues-api").length == 0) {
+      return;
+    } 
+    loadScript('/js/issues/index.js');
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  document.addEventListener('pjax:complete', function () {
+    if (typeof IssuesAPI == "undefined") {
+      loadIssuesJS();
+    }
+  })
+</script>
+
+<!-- 输入框打字特效 -->
+<!-- 输入框打字特效 -->
+
+  <script src="/js/activate-power-mode.js"></script>
+  <script>
+    POWERMODE.colorful = true;  // 打开随机颜色特效
+    POWERMODE.shake = false;    // 关闭输入框抖动
+    document.body.addEventListener('input', POWERMODE);//监听打字事件
+  </script>
+
+
+<!-- markdown代码一键复制功能 -->
+
+  <link rel="stylesheet" href="https://unpkg.com/v-plugs-ayu/lib/ayu.css">
+  <script src="https://unpkg.com/v-plugs-ayu/lib/ayu.umd.min.js"></script>
+  <script src="/js/clipboard/clipboard.min.js"></script>
+  <div id="appCopy">
+  </div>
+  <script data-pjax>
+    var vm = new Vue({
+      el: '#appCopy',
+      data: {
+      },
+      computed: {
+      },
+      mounted() {
+        const that = this;
+        var copy = 'copy';
+        /* code */
+        var initCopyCode = function () {
+          var copyHtml = '';
+          copyHtml += '<button class="btn-copy" data-clipboard-snippet="" style="position:absolute;top:0;right:0;z-index:1;">';
+          copyHtml += '<i class="fas fa-copy"></i><span>' + copy + '</span>';
+          copyHtml += '</button>';
+          $(".post-detail pre").not('.gutter pre').wrap("<div class='codeBox' style='position:relative;width:100%;'></div>")
+          $(".post-detail pre").not('.gutter pre').before(copyHtml);
+          new ClipboardJS('.btn-copy', {
+            target: function (trigger) {
+              return trigger.nextElementSibling;
+            }
+          });
+        }
+        initCopyCode();
+        $('.btn-copy').unbind('click').bind('click', function () {
+          doSomething();
+        })
+        $(document).unbind('keypress').bind('keypress', function (e) {
+          if (e.ctrlKey && e.keyCode == 67) {
+            doSomething();
+          }
+        })
+
+        function doSomething() {
+          that.$notify({
+            title: "成功",
+            content: "代码已复制，请遵守相关授权协议。",
+            type: 'success'
+          })
+        }
+      },
+      methods: {
+      },
+      created() { }
+    })
+  </script>
+  
+
+<!-- 图片懒加载 -->
+<script defer src="https://unpkg.com/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+<!-- 卡片滚动动画 -->
+   
+
+<!-- 评论所需js -->
+
+  
+    <script type="text/javascript">
+  var utteranceCommon = {};
+
+  function check_utterance() {
+    let isDark = JSON.parse(localStorage.getItem('dark')) || JSON.parse('false');
+    if (isDark) {
+      utteranceCommon.Theme = 'github-dark';
+    } else {
+      utteranceCommon.Theme = 'github-light';
+    }
+
+    return document.getElementById("gitment-container");
+  }
+  comment_el = '#gitment-container';
+  load_utterance = function () {
+    if ($(comment_el).length) {
+      // 匿名函数，防止污染全局变量
+      const HEAD = check_utterance();
+
+      var utterances = document.createElement('script');
+      utterances.type = 'text/javascript';
+      utterances.async = true;
+      utterances.setAttribute('issue-term', 'pathname')
+      utterances.setAttribute('theme', utteranceCommon.Theme)
+      utterances.setAttribute('repo', '')
+      utterances.crossorigin = 'anonymous';
+      utterances.src = 'https://utteranc.es/client.js';
+      // content 是要插入评论的地方
+      document.getElementById('gitment-container').appendChild(utterances);
+
+    }
+  }
+
+  function dark_utterance() {
+    const HEAD = check_utterance();
+    if (!HEAD) return;
+    const message = {
+      type: 'set-theme',
+      theme: utteranceCommon.Theme
+    };
+    const utteranceIframe = document.querySelector('iframe');
+    utteranceIframe.contentWindow.postMessage(message, 'https://utteranc.es');
+  }
+
+  $(document).ready(load_utterance);
+  document.addEventListener('pjax:complete', function () {
+    load_utterance();
+  });
+
+  $('.dark').click(function () {
+    setTimeout(() => {
+      dark_utterance();
+    });
+  })
+
+</script>
+
+<style>
+  .utterances {
+    max-width: inherit !important;
+  }
+</style>
+  
+
+
+<!-- 鼠标点击特效 -->
+<!-- 爱心点击 -->
+
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 999; pointer-events: none;" ></canvas>
+    <script src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+    <script src="/js/cursor/explosion.min.js"></script>
+  
+
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" data-pjax></script>
+
+
+    <!-- pjax -->
+    
+
+<!-- pjax -->
+
+
+  <script src="/js/pjax@0.2.8/index.js"></script>
+  
+    <!-- 样式位于：source/css/_third-party/pjaxanimate.styl -->
+
+<div class="pjax-animate">
+  
+    <div class="loading-circle"><div id="loader-circle"></div></div>
+    <script>
+      window.ShowLoading = function() {
+        $(".loading-circle").css("display", "block");
+      };
+      window.HideLoading = function() {
+        $(".loading-circle").css("display", "none");
+      }
+    </script>
+  
+	<script>
+    document.addEventListener('pjax:complete', function () {
+      window.HideLoading();
+    })
+    document.addEventListener('pjax:send', function () {
+      window.ShowLoading();
+    })
+    document.addEventListener('pjax:error', function () {
+      window.HideLoading();
+    })
+	</script>
+</div>
+
+  
+
+  <script>
+    var pjax = new Pjax({
+      elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([no-pjax])',   // 拦截正常带链接的 a 标签
+      selectors: ["#pjax-container","title"],                                   // 根据实际需要确认重载区域
+      cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+      timeout: 5000
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+
+    })
+    
+    document.addEventListener('pjax:complete', function () {
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+      window.location.href = e.triggerElement.href;
+    })
+    
+    // 刷新不从顶部开始
+    document.addEventListener("DOMContentLoaded", function () {
+      history.scrollRestoration = 'auto';
+    })
+  </script>
+
+
+
+  </body>
+</html>
